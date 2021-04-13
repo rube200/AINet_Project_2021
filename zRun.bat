@@ -2,7 +2,7 @@
 echo.
 echo Starting artisan...
 echo.
-php artisan serve
+php artisan serve --port 80
 echo.
 echo Artisan stopped...
 echo.
