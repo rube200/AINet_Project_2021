@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
-.estampa-imagem img
-{
+.estampa-imagem img {
     height: 300px;
     width: 300px;
 }
