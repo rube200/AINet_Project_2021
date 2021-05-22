@@ -1,0 +1,16 @@
+WebSite -> Imprimir a estapa e enviar para casa
+Estampas -> Catalogo (ou enviar a propria estampa)
+Adicionar TShirts ao carrinho (selecionar estampa, cor, tamanho e quantidade para cada tshirt)
+No carrinho mostrar o preco (total, subtotal, unitario)
+Adicionar e remover do carrinho, alterar a cor, tamanho e quantidade no carrinho
+Confirmar o carrinho e criar encomenda é necessario conta
+Confirmar o carrinho é preciso NIF e nome(proprio), forma de pagamento e endereço de envio
+Encomendas criadas ficam 'pendente' (aguardar pagamento), 'paga' (apos pagamento), 'fechada' apos o envio e em caso de problemas 'aulada' (pagamento ou tratamento)
+Funcionarios sao responsaveis pelo recibo, confirmacao de pagamento, tratamento, estampagem e envio (na app apenas set 'paga' e 'fechada')
+Admins (tbm funcionarios) podem alterar o estado para 'anulada'
+
+4 precos:
+Estampa da loja
+Estampa da loja com desconto (quantidade)
+Estampa do client
+Estampa do client com desconto
