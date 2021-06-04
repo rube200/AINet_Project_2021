@@ -1,6 +1,10 @@
 @charset "UTF-8";
 
-.estampa-imagem img {
+body {
+    padding-top: 60px; /* Navbar uses 55.6px (fixed position)*/
+}
+
+.estampa-img {
     height: 300px;
     width: 300px;
 }
