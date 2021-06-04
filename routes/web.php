@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +20,9 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Auth::routes(['verify' => true]);
-Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('index');
+Route::get('/', [App\Http\Controllers\ShopController::class, 'index'])->name('index');
+Route::prefix('cart')->name('cart.')->group(function()
+{
+    Route::get('/', [CartController::class, 'index'])->name('index');
+    Route::post('/add', [CartController::class, 'add'])->name('add');
+});
