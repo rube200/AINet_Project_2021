@@ -5,6 +5,14 @@ body {
 }
 
 .estampa-img {
+    height: 500px;
+    width: 500px;
+
+    outline-color: black;
+    outline-style: auto;
+}
+
+.estampa-img-browse {
     height: 300px;
     width: 300px;
 }
