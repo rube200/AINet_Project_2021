@@ -13,6 +13,6 @@ class Categoria extends Model
 
     public function estampas(): HasMany
     {
-        return $this->hasMany(Estampa::class, 'categoria_id');
+        return $this->hasMany(Estampa::class);
     }
 }
