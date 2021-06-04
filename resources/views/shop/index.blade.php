@@ -1,8 +1,7 @@
 @extends('layouts.layout')
-@section('title', 'Dashboard')
+@section('title', 'Shop')
 @section('content')
-    <h1>Some Content . . .</h1>
-    <div>
+    <div class="container">
         @include('partials.display_estampas', $estampas)
     </div>
 @endsection

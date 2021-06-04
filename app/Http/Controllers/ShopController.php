@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class DashboardController extends Controller
+class ShopController extends Controller
 {
     /**
-     * Show the application dashboard.
+     * Show the application shop.
      *
      * @param Request $request
      * @return mixed
@@ -37,7 +37,6 @@ class DashboardController extends Controller
             $estampas = $estampas->toBase()->merge($estampasPrivadas);
         }
 
-        return view('dashboard.index')
-            ->withEstampas($estampas);
+        return view('shop.index')->withEstampas($estampas);
     }
 }
