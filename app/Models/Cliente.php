@@ -13,12 +13,12 @@ class Cliente extends User
         return $this->belongsTo(User::class);
     }*/
 
-    public function encomendas() : HasMany
+    public function encomendas(): HasMany
     {
         return $this->hasMany(Encomenda::class);
     }
 
-    public function estampas() : HasMany
+    public function estampas(): HasMany
     {
         return $this->hasMany(Estampa::class);
     }
