@@ -27,7 +27,7 @@ class CartController extends Controller
         if (!$cart) {
             $cart = [
                 /*$id => [
-                    "quantidade" => 1
+                    "quantity" => 1
                 ]*/
             ];
 
@@ -38,7 +38,7 @@ class CartController extends Controller
         return redirect()->back();
 
         if (isset($cart[$id])) {
-            $cart[$id]['quantidade']++;
+            $cart[$id]['quantity']++;
 
             session()->put('cart', $cart);
             return redirect()->back();
@@ -46,7 +46,7 @@ class CartController extends Controller
 
         $cart[$id] = [
             /*$id => [
-                "quantidade" => 1
+                "quantity" => 1
             ]*/
         ];
 
