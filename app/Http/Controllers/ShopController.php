@@ -24,16 +24,13 @@ class ShopController extends Controller
         }
 
         $estampas = $estampasQuery->get();
-        foreach ($estampas as $estampa)
-        {
+        foreach ($estampas as $estampa) {
             $estampa->img = asset('storage/estampas/' . $estampa->imagem_url);
         }
 
-        if (Auth::check())
-        {
+        if (Auth::check()) {
             $estampasPrivadas = Estampa::select('id', 'nome', 'descricao', 'imagem_url')->where('cliente_id', Auth::id())->get();
-            foreach ($estampasPrivadas as $estampa)
-            {
+            foreach ($estampasPrivadas as $estampa) {
                 $estampa->img = 'data:image/png;base64,' . base64_encode(Storage::get('estampas_privadas/' . $estampa->imagem_url));
             }
             $estampas = $estampas->toBase()->merge($estampasPrivadas);
@@ -44,6 +41,11 @@ class ShopController extends Controller
 
     public function show(Estampa $estampa)
     {
+        if (is_null($estampa->cliente_id)) {
+            $estampa->img = asset('storage/estampas/' . $estampa->imagem_url);
+        } else {
+            $estampa->img = 'data:image/png;base64,' . base64_encode(Storage::get('estampas_privadas/' . $estampa->imagem_url));
+        }
         return view('shop.estampa')->withEstampa($estampa);
     }
 }
