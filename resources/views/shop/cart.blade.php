@@ -1,5 +1,5 @@
-@extends('layouts.layout')
-@section('title', 'Cart')
+@extends('layouts.shop_layout')
+@section('title', __('Cart-Title'))
 @section('content')
     <div class="container">
 
