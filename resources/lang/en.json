@@ -2,8 +2,23 @@
     "AddToCard": "Add to cart",
     "Cart": "cart",
 
+    "Login-Button" : "Login",
+    "Email-Input": "Email Address:",
+    "Password-Input": "Password:",
+    "Remember-Input": "Remember Me",
+    "Login-Submit": "Login",
+    "Forget-Password-Button": "Forge Password?",
+    "Reset-Password-Submit": "Reset Password",
+    "Register-Button" : "Register",
+    "Name-Input": "Name:",
+    "Confirm-Password-Input": "Confirm Password",
+    "Register-Submit": "Register",
+    "Logout-Button" : "Logout",
 
     "Cart-Title": "Cart",
     "Estampa-Title": "Estampa :name",
+    "Login-Title" : "Login",
+    "Register-Title": "Register",
+    "Reset-Password-Title": "Reset Password",
     "Shop-Title": "Shop"
 }
