@@ -3,6 +3,6 @@
         <a class="navbar-brand" href="{{route('index')}}">
             {{config('app.name', 'MagicShirts')}}
         </a>
-        @include('partials.auth')
+        @include('partials.auth_navbar')
     </div>
 </nav>
