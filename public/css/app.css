@@ -1,28 +1,61 @@
 @charset "UTF-8";
 
 body {
+    margin-top: 80px !important;
     padding-top: 60px; /* Navbar uses 55.6px (fixed position)*/
+    background-color:aliceblue !important;
 }
 
 .estampa-img {
     height: 500px;
     width: 500px;
-
+    text-align:center;
+    padding:5px;
     outline-color: black;
     outline-style: auto;
 }
 
 .estampa-img-browse {
+
+    text-align:center;
+    padding:5px;
     height: 300px;
     width: 300px;
 }
 
 .estampa-item-link {
+
+    text-align:justify;
+    padding:5px;
+    color: initial;
+    text-decoration-line: initial;
+    max-width:100%;height:auto;
+}
+
+.estampa-item-link:hover {
+
+    text-align:justify;
+    padding:5px;
     color: initial;
     text-decoration-line: initial;
 }
 
-.estampa-item-link:hover {
-    color: initial;
-    text-decoration-line: initial;
+.estampa-area{
+    align-items: center;
+    text-align:center;
+    padding:5px;
+}
+
+h5{
+    text-align: center;
+}
+
+h5:hover{
+    text-align: center;
+}
+
+.estampa-card{
+    margin: 15px;
+    height: 550px;
+    width: 300px;
 }
