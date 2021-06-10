@@ -6,7 +6,7 @@
             <div class="col-md">
                 <img class="estampa-img" src="{{$estampa->img}}">
             </div>
-            <div class="tex-col col-md">
+            <div class="align-self-center col-md tex-col">
                 <div class="body-estampa card-body estampa-body">
                     <h5 class="name-estampa card-title estampa-name">{{$estampa->nome}}</h5>
                     <p class="descrition-estampa card-text estampa-descricao">{{$estampa->descricao}}</p>
