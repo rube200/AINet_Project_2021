@@ -7,10 +7,14 @@ body {
     background-color: aliceblue !important;
 }
 
+/* NavBar */
+.nav-link{
+    color:lightcyan!important;
+}
+
 /* Shop */
 .estampa-img {
-    height: 500px;
-    width: 500px;
+    height: 100%;
     padding: 5px;
     outline-color: black;
     outline-style: auto;
@@ -18,15 +22,12 @@ body {
 }
 
 .estampa-img-browse {
-
     text-align: center;
     padding: 5px;
     height: 300px;
-    width: 300px;
 }
 
 .estampa-item-link {
-
     text-align: justify;
     padding: 5px;
     color: initial;
@@ -74,14 +75,10 @@ h5:hover {
     height: 120px;
 }
 
-/*HEAD*/
-.nav-link{
-    color:lightcyan!important;
-}
-
 .body-estampa{
     text-align: center;
 }
+
 .description-estampa{
     margin-top: 50px;
     margin-bottom: 50px;
@@ -92,9 +89,6 @@ h5:hover {
     font-size: 40px;
 }
 
-.estampa-img{
-    height: 100%;
-}
 /* Profiles */
 .profile-card {
     width: 500px;
