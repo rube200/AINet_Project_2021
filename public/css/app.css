@@ -13,6 +13,7 @@ body {
     padding:5px;
     outline-color: black;
     outline-style: auto;
+    background-color: white;
 }
 
 .estampa-img-browse {
@@ -68,8 +69,27 @@ h5:hover{
         margin-bottom:7px;
 }
 
-.card-text{
+.text-estampa{
     height: 120px;
 }
 
+.nav-link{
+    color:lightcyan!important;
+}
 
+.body-estampa{
+    text-align: center;
+}
+.description-estampa{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: justify;
+}
+
+.name-estampa{
+    font-size: 40px;
+}
+
+.estampa-img{
+    height: 100%;
+}

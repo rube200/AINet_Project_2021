@@ -6,7 +6,7 @@
                     <img class="card-img-top estampa-img-browse" src="{{$estampa->img}}" alt="Imagem da estampa">
                     <div class="card-body estampa-body text-center">
                         <h5 class="card-title estampa-name">{{$estampa->nome}}</h5>
-                        <p class="card-text estampa-descricao">{{$estampa->descricao}}</p>
+                        <p class="text-estampa card-text estampa-descricao">{{$estampa->descricao}}</p>
                         @include('partials.add_to_cart', ['add_button_classes' => 'btn btn-secondary', $estampa])
                     </div>
                 </a>

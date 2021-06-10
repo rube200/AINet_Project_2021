@@ -6,11 +6,11 @@
             <div class="col-md">
                 <img class="estampa-img" src="{{$estampa->img}}">
             </div>
-            <div class="col-md">
-                <div class="card-body estampa-body">
-                    <h5 class="card-title estampa-name">{{$estampa->nome}}</h5>
-                    <p class="card-text estampa-descricao">{{$estampa->descricao}}</p>
-                    @include('partials.add_to_cart', ['add_button_classes' => 'btn btn-secondary btn-sm', $estampa])
+            <div class="tex-col col-md">
+                <div class="body-estampa card-body estampa-body">
+                    <h5 class="name-estampa card-title estampa-name">{{$estampa->nome}}</h5>
+                    <p class="descrition-estampa card-text estampa-descricao">{{$estampa->descricao}}</p>
+                    @include('partials.add_to_cart', ['add_button_classes' => 'btn btn-secondary btn-lg', $estampa])
                 </div>
             </div>
         </div>
