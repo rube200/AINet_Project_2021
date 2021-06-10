@@ -106,3 +106,11 @@ h5:hover {
     height:40px;
     width:40px;
 }
+
+.login-container,.register-container{
+    text-align: center;
+}
+
+.email-login,.password-login,.email-register,.name-register,.password-register,.password-confirm-register{
+    margin-left: 360px;
+}
