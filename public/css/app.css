@@ -1,16 +1,17 @@
 @charset "UTF-8";
 
+/* Layout */
 body {
     margin-top: 80px !important;
     padding-top: 60px; /* Navbar uses 55.6px (fixed position)*/
-    background-color:aliceblue !important;
+    background-color: aliceblue !important;
 }
 
+/* Shop */
 .estampa-img {
     height: 500px;
     width: 500px;
-    text-align:center;
-    padding:5px;
+    padding: 5px;
     outline-color: black;
     outline-style: auto;
     background-color: white;
@@ -18,31 +19,31 @@ body {
 
 .estampa-img-browse {
 
-    text-align:center;
-    padding:5px;
+    text-align: center;
+    padding: 5px;
     height: 300px;
     width: 300px;
 }
 
 .estampa-item-link {
 
-    text-align:justify;
-    padding:5px;
+    text-align: justify;
+    padding: 5px;
     color: initial;
     text-decoration-line: initial;
-    max-width:100%;
-    height:auto;
+    max-width: 100%;
+    height: auto;
 }
 
 .estampa-item-link:hover {
 
-    text-align:justify;
-    padding:5px;
+    text-align: justify;
+    padding: 5px;
     color: initial;
     text-decoration-line: initial;
 }
 
-.estampa-area{
+.estampa-area {
     align-items: center;
     text-align:center;
     padding:5px;
@@ -50,11 +51,11 @@ body {
     display: grid;
 }
 
-h5{
+h5 {
     text-align: center;
 }
 
-h5:hover{
+h5:hover {
     text-align: center;
 }
 
@@ -73,6 +74,7 @@ h5:hover{
     height: 120px;
 }
 
+/*<<<<<<< HEAD*/
 .nav-link{
     color:lightcyan!important;
 }
@@ -92,4 +94,23 @@ h5:hover{
 
 .estampa-img{
     height: 100%;
+}
+/*=======*/
+/* Profiles */
+.profile-card {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-img-view {
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-icon {
+    height:40px;
+    width:40px;
+/*>>>>>>> 6dde615bfe9c127dd7e5eba27b0a8fba8ccd051a*/
 }

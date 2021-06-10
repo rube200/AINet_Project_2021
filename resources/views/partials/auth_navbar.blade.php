@@ -1,9 +1,10 @@
 @auth
-    <a class="nav-link">
+    <a class="nav-link" href="{{route('profile.index')}}">
         {{Auth::user()->name}}
     </a>
     @if (Route::has('logout'))
-        <a class="nav-link" href="{{route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-request').submit();">
+        <a class="nav-link" href="{{route('logout')}}"
+           onclick="event.preventDefault();document.getElementById('logout-request').submit();">
             {{__('Logout-Button')}}
         </a>
         <form id="logout-request" action="{{route('logout')}}" method="POST" class="d-none">
