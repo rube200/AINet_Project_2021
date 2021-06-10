@@ -74,7 +74,7 @@ h5:hover {
     height: 120px;
 }
 
-/*<<<<<<< HEAD*/
+/*HEAD*/
 .nav-link{
     color:lightcyan!important;
 }
@@ -95,7 +95,6 @@ h5:hover {
 .estampa-img{
     height: 100%;
 }
-/*=======*/
 /* Profiles */
 .profile-card {
     width: 500px;
@@ -112,5 +111,4 @@ h5:hover {
 .profile-icon {
     height:40px;
     width:40px;
-/*>>>>>>> 6dde615bfe9c127dd7e5eba27b0a8fba8ccd051a*/
 }
