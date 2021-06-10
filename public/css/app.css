@@ -29,7 +29,8 @@ body {
     padding:5px;
     color: initial;
     text-decoration-line: initial;
-    max-width:100%;height:auto;
+    max-width:100%;
+    height:auto;
 }
 
 .estampa-item-link:hover {
@@ -44,6 +45,8 @@ body {
     align-items: center;
     text-align:center;
     padding:5px;
+    gap: 32px 16px;
+    display: grid;
 }
 
 h5{
@@ -55,7 +58,18 @@ h5:hover{
 }
 
 .estampa-card{
-    margin: 15px;
-    height: 550px;
-    width: 300px;
+    height: 555px;
+    margin-bottom: 20px;
 }
+
+.estampa-card:a{
+        position:absolute;
+        bottom:0;
+        margin-bottom:7px;
+}
+
+.card-text{
+    height: 120px;
+}
+
+
