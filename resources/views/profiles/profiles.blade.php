@@ -22,11 +22,11 @@
                         {{$user->name}}
                     </td>
                     <td>
-                        @can('blockUser', $user)
-                            <form method="POST" action="#{{--route('profile.block', ['user' => $user])--}}"
-                                  class="form-group">
+                        @can('updateBlock', $user)
+                            <form action="{{route('profile.update', $user)}}" class="form-group" method="POST">
                                 @csrf
-                                @method('POST')
+                                @method('PATCH')
+                                <input name="toggleBlock" value="1" type="hidden">
                                 <button class="btn btn-success" type="submit">{{!$user->bloqueado ? 'Bloquear' : 'Desbloquear'}}</button>
                             </form>
                         @endcan
@@ -40,11 +40,13 @@
                         @endcan
                     </td>
                     <td>
-                        <form action="#" method="POST">
-                            @csrf
-                            @method("DELETE")
-                            <input class="btn btn-danger btn-sm" type="submit" value="Apagar"/>
-                        </form>
+                        @can('delete', $user)
+                            <form action="{{route('profile.destroy', $user)}}" class="form-group" method="POST">
+                                @csrf
+                                @method("DELETE")
+                                <input class="btn btn-danger btn-sm" type="submit" value="Apagar"/>
+                            </form>
+                        @endcan
                     </td>
                 </tr>
             @endforeach
