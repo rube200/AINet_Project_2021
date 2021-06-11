@@ -9,6 +9,9 @@ class EstampaPolicy extends FuncionarioPolicy
 {
     public function view(?User $user, Estampa $estampa): bool
     {
+        if ($this->isFuncionario(optional($user)))
+            return true;
+
         if (is_null($estampa->cliente_id))
             return true;
 

@@ -8,13 +8,15 @@ class FuncionarioPolicy
 {
     use HandlesAuthorization;
 
-    /** @noinspection PhpMissingReturnTypeInspection */
-    public function isFuncionario($user)
+    public function isFuncionario($user): bool
     {
         switch (strtoupper($user->tipo)) {
             case 'A':
             case 'F':
                 return true;
+
+            default:
+                return false;
         }
     }
 }
