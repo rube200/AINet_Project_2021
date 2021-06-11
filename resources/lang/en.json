@@ -15,12 +15,14 @@
     "Resend-Email-Submit": "Resend confirmation email",
     "Comfirm-Email-Sent": "Email sent",
     "Logout-Button": "Logout",
+
     "Cart-Title": "Cart",
     "Estampa-Title": "Estampa :name",
     "Login-Title": "Login",
     "Profile-Title": "Profile",
     "Profiles-Title": "Profiles",
     "Register-Title": "Register",
+    "Reset-Password-Email-Title" : "Reset Passord",
     "Reset-Password-Title": "Reset Password",
     "Shop-Title": "Shop",
     "Verify-Email-Title": "Verify Email"
