@@ -15,25 +15,35 @@ class ShopController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function index(Request $request)
+    public function index(/*Request $request*/)
     {
+        /*&& $user->hasVerifiedEmail()*/
         $estampasQuery = Estampa::select('id', 'nome', 'descricao', 'imagem_url', 'cliente_id');
-        if (Auth::check()) {
-            $estampasQuery->whereRaw('(`cliente_id` is null or `cliente_id` = ?)', Auth::id());
-        } else {
+        $user = Auth::user();
+        if (!is_null($user))
+        {
+            switch (strtoupper($user->tipo))
+            {
+                case 'A':
+                case 'F':
+                    break;
+
+                default:/* isto garante acesso apenas a funcionarios e admins mesmo que seja criado outro tipo */
+                    $estampasQuery->whereRaw('(`cliente_id` is null or `cliente_id` = ?)', Auth::id());
+            }
+        }
+        else
+        {
             $estampasQuery->whereNull('cliente_id');
         }
 
-        if (($categoria = $request->query('categoria', '0')) != 0) {
+        /*if (($categoria = $request->query('categoria', '0')) != 0) {
             $estampasQuery->where('categoria_id', $categoria);
-        }
+        }*/
 
         $estampas = $estampasQuery->orderBy('id')->paginate(20);
         foreach ($estampas as $estampa) {
-            if (is_null($estampa->cliente_id))
-                $estampa->img = asset('storage/estampas/' . $estampa->imagem_url);
-            else
-                $estampa->img = 'data:image/png;base64,' . base64_encode(Storage::get('estampas_privadas/' . $estampa->imagem_url));
+            $this->prepareEstampaImage($estampa);
         }
 
         return view('shop.index')->withEstampas($estampas);
@@ -41,11 +51,22 @@ class ShopController extends Controller
 
     public function show(Estampa $estampa)
     {
-        if (is_null($estampa->cliente_id)) {
-            $estampa->img = asset('storage/estampas/' . $estampa->imagem_url);
-        } else {
-            $estampa->img = 'data:image/png;base64,' . base64_encode(Storage::get('estampas_privadas/' . $estampa->imagem_url));
-        }
+        $this->prepareEstampaImage($estampa);
         return view('shop.estampa')->withEstampa($estampa);
+    }
+
+    public function prepareEstampaImage(Estampa $estampa)
+    {
+        if (is_null($estampa->cliente_id)) {
+            $path = 'public/estampas/' . $estampa->imagem_url;
+        } else {
+            $path = 'estampas_privadas/' . $estampa->imagem_url;
+        }
+
+        if (Storage::exists($path)) {
+            $estampa->img = 'data:image/png;base64,' . base64_encode(Storage::get($path));
+        } else {
+            $estampa->img = asset('not_found');/*todo*/
+        }
     }
 }
