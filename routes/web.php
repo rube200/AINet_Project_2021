@@ -21,7 +21,7 @@ Auth::routes(['verify' => true]);
 Route::get('/', [ShopController::class, 'index'])->name('index');
 Route::get('estampa/{estampa}', [ShopController::class, 'show'])->middleware('can:view,estampa')->name('estampa.view');
 
-Route::resource('profile', UserController::class)->middleware('verified');
+Route::resource('profile', UserController::class);
 
 Route::prefix('cart')->name('cart.')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('index');
