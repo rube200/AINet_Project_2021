@@ -1,24 +1,27 @@
 {
     "AddToCard": "Add to cart",
     "Cart": "cart",
-
-    "Login-Button" : "Login",
+    "Login-Button": "Login",
     "Email-Input": "Email Address:",
     "Password-Input": "Password:",
     "Remember-Input": "Remember Me",
     "Login-Submit": "Login",
     "Forget-Password-Button": "Forge Password?",
     "Reset-Password-Submit": "Reset Password",
-    "Register-Button" : "Register",
+    "Register-Button": "Register",
     "Name-Input": "Name:",
     "Confirm-Password-Input": "Confirm Password",
     "Register-Submit": "Register",
-    "Logout-Button" : "Logout",
-
+    "Resend-Email-Submit": "Resend confirmation email",
+    "Comfirm-Email-Sent": "Email sent",
+    "Logout-Button": "Logout",
     "Cart-Title": "Cart",
     "Estampa-Title": "Estampa :name",
-    "Login-Title" : "Login",
+    "Login-Title": "Login",
+    "Profile-Title": "Profile",
+    "Profiles-Title": "Profiles",
     "Register-Title": "Register",
     "Reset-Password-Title": "Reset Password",
-    "Shop-Title": "Shop"
+    "Shop-Title": "Shop",
+    "Verify-Email-Title": "Verify Email"
 }
