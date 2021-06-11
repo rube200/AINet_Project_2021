@@ -1,5 +1,5 @@
 @auth
-    <a class="nav-link" href="{{route('profile.index')}}">
+    <a class="nav-link" href="{{route('profile.show', Auth::user())}}">
         {{Auth::user()->name}}
     </a>
     @if (Route::has('logout'))

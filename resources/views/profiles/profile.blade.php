@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="card profile-card">
-            <img class="card-img-top profile-img-view" src="{{asset('storage/fotos/' . $user->foto_url)}}">
+            <img class="card-img-top profile-img-view" src="{{$user->img}}">
             <div class="card-body">
                 <h5 class="card-title">{{$user->name}}</h5>
                 <p class="card-text">Joined at {{$user->created_at}}</p>

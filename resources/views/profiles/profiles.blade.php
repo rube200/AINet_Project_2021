@@ -16,23 +16,26 @@
             @foreach ($users as $user)
                 <tr>
                     <td>
-                        <img class="profile-icon" src="{{asset('storage/fotos/' . $user->foto_url)}}">
+                        <img class="profile-icon" src="{{$user->img}}"/>
                     </td>
                     <td>
                         {{$user->name}}
                     </td>
                     <td>
-                        @if(!$user->bloqueado)
-                            <a href="#" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Bloquear</a>
-                        @else
-                            <a href="#" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Desbloquear</a>
+                        @can('blockUser', $user)
+                            <form method="POST" action="#{{--route('profile.block', ['user' => $user])--}}"
+                                  class="form-group">
+                                @csrf
+                                @method('POST')
+                                <button class="btn btn-success" type="submit">{{!$user->bloqueado ? 'Bloquear' : 'Desbloquear'}}</button>
+                            </form>
                         @endcan
                     </td>
                     <td>
                         @can('edit', $user)
                             <form action="#" method="GET">
                                 @csrf
-                                <input type="submit" class="btn btn-danger btn-sm" value="Apagar">
+                                <input type="submit" class="btn btn-danger btn-sm" value="Editar"/>
                             </form>
                         @endcan
                     </td>
@@ -40,7 +43,7 @@
                         <form action="#" method="POST">
                             @csrf
                             @method("DELETE")
-                            <input class="btn btn-danger btn-sm" type="submit" value="Apagar">
+                            <input class="btn btn-danger btn-sm" type="submit" value="Apagar"/>
                         </form>
                     </td>
                 </tr>
