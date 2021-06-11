@@ -8,7 +8,7 @@ class FuncionarioPolicy
 {
     use HandlesAuthorization;
 
-    public function isFuncionario($user): bool
+    public static function isFuncionario($user): bool
     {
         switch (strtoupper($user->tipo)) {
             case 'A':
