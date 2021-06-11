@@ -9,7 +9,7 @@ class FuncionarioPolicy
     use HandlesAuthorization;
 
     /** @noinspection PhpMissingReturnTypeInspection */
-    public function before($user)
+    public function isFuncionario($user)
     {
         switch (strtoupper($user->tipo)) {
             case 'A':
