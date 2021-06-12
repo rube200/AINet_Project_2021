@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class UserPost extends FormRequest
 {
@@ -16,7 +17,6 @@ class UserPost extends FormRequest
         if ($this->request->getBoolean('toggleBlock'))
             return $this->user()->can('isAdmin', $this->user());
 
-        /* todo finish */
         return true;
     }
 
@@ -29,7 +29,9 @@ class UserPost extends FormRequest
     {
         return [
             'toggleBlock' => 'bail|sometimes|boolean',
-            'name' => 'exclude_if:toggleBlock,true|string|max:255'
+            'name' => 'exclude_if:toggleBlock,true|string|max:255',
+            'email' => 'exclude_if:toggleBlock,true|string|email|unique:users|max:255',
+            'password' => ['exclude_if:toggleBlock,true', Password::defaults(), 'confirmed']
         ];
     }
 }
