@@ -7,9 +7,9 @@
                 <img class="estampa-img" src="{{$estampa->img}}">
             </div>
             <div class="align-self-center col-md tex-col">
-                <div class="body-estampa card-body estampa-body">
-                    <h5 class="name-estampa card-title estampa-name">{{$estampa->nome}}</h5>
-                    <p class="description-estampa card-text estampa-descricao">{{$estampa->descricao}}</p>
+                <div class="card-body estampa-body">
+                    <h5 class="card-title estampa-name">{{$estampa->nome}}</h5>
+                    <p class="card-text estampa-description">{{$estampa->descricao}}</p>
                     @include('partials.add_to_cart', ['add_button_classes' => 'btn btn-secondary btn-lg', $estampa])
                 </div>
             </div>
@@ -17,7 +17,7 @@
     </div>
 @endsection
 
-{{--
+{{-- todo check and verify css
 <span class="quantity_less" disabled="disabled">
     －
 </span>

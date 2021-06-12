@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="refresh" content="30">{{--TODO--}}
+{{--<meta http-equiv="refresh" content="30">TODO--}}
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{csrf_token()}}">
@@ -17,7 +17,7 @@
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 <body>
-<div>
+<div class="shop-body">
     @include('partials.navbar')
     @yield('layout')
 </div>
