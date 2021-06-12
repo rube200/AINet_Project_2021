@@ -1,18 +1,48 @@
 @charset "UTF-8";
 
-/* Layout */
-body {
-    margin-top: 80px !important;
-    padding-top: 60px; /* Navbar uses 55.6px (fixed position)*/
-    background-color: aliceblue !important;
+html {
+    background-color: aliceblue;
 }
 
 /* NavBar */
-.nav-link{
-    color:lightcyan!important;
+.navbar {
+    margin-bottom: 15px;
 }
 
-/* Shop */
+.dropdown:hover .dropdown-menu {
+    display: block;
+    right: 0;
+}
+
+/* Layout */
+.shop-body {
+    background-color: aliceblue;
+}
+
+.shop-container {
+    padding-top: 1%;
+}
+
+.shop-estampa-card {
+    margin-bottom: 20px;
+    padding: 5px;
+    text-align: justify;
+}
+
+.shop-estampa-link {
+    color: initial;
+    text-decoration-line: initial;
+}
+
+.shop-estampa-link:hover {
+    color: initial;
+}
+
+.shop-estampa-img {
+    height: 300px;
+    margin-bottom: 5px;
+}
+
 .estampa-img {
     height: 500px;
     padding: 5px;
@@ -21,71 +51,18 @@ body {
     background-color: white;
 }
 
-.estampa-img-browse {
-    text-align: center;
-    padding: 5px;
-    height: 300px;
-}
-
-.estampa-item-link {
-    text-align: justify;
-    padding: 5px;
-    color: initial;
-    text-decoration-line: initial;
-    max-width: 100%;
-    height: auto;
-}
-
-.estampa-item-link:hover {
-
-    text-align: justify;
-    padding: 5px;
-    color: initial;
-    text-decoration-line: initial;
-}
-
-.estampa-area {
-    align-items: center;
-    text-align:center;
-    padding:5px;
-    gap: 32px 16px;
-    display: grid;
-}
-
-h5 {
+.estampa-name {
     text-align: center;
 }
 
-h5:hover {
-    text-align: center;
-}
-
-.estampa-card{
-    height: 555px;
-    margin-bottom: 20px;
-}
-
-.estampa-card:a{
-        position:absolute;
-        bottom:0;
-        margin-bottom:7px;
-}
-
-.text-estampa{
+.estampa-description {
     height: 120px;
-}
-
-.body-estampa{
-    text-align: center;
-}
-
-.description-estampa{
     margin-top: 50px;
     margin-bottom: 50px;
     text-align: justify;
 }
 
-.name-estampa{
+.estampa-name {
     font-size: 40px;
 }
 
@@ -105,12 +82,4 @@ h5:hover {
 .profile-icon {
     height:40px;
     width:40px;
-}
-
-.login-container,.register-container{
-    text-align: center;
-}
-
-.email-login,.password-login,.email-register,.name-register,.password-register,.password-confirm-register{
-    margin-left: 360px;
 }
