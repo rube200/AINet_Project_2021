@@ -6,6 +6,11 @@
             <a class="dropdown-item" href="{{route('profile.show', Auth::user())}}">
                 {{Auth::user()->name}}
             </a>
+            @can('viewAny', Auth::user())
+            <a class="dropdown-item" href="{{route('profile.index')}}">
+                {{__('Manage-Users')}}
+            </a>
+            @endcan
             <a class="dropdown-item" href="{{route('logout')}}"
                onclick="event.preventDefault();document.getElementById('logout-request').submit();">
                 {{__('Logout-Button')}}
@@ -14,17 +19,12 @@
                 @csrf
             </form>
         @else
-            @if (Route::has('login'))
-                <a class="dropdown-item" href="{{route('login')}}">
-                    {{__('Login-Button')}}
-                </a>
-            @endif
-
-            @if (Route::has('register'))
-                <a class="dropdown-item" href="{{route('register')}}">
-                    {{__('Register-Button')}}
-                </a>
-            @endif
+            <a class="dropdown-item" href="{{route('login')}}">
+                {{__('Login-Button')}}
+            </a>
+            <a class="dropdown-item" href="{{route('profile.create')}}">
+                {{__('Register-Button')}}
+            </a>
         @endauth
     </div>
 </div>
