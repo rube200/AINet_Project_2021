@@ -18,6 +18,12 @@
     "Comfirm-Email-Sent": "Email sent",
     "Manage-Users" : "Manage users",
     "Logout-Button": "Logout",
+    "Types-Label": "Types",
+    "Admins-Text": "Admins",
+    "Employee-Text": "Employees",
+    "Customer-Text": "Customers",
+    "Filter-Button": "Filter",
+
     "Cart-Title": "Cart",
     "Estampa-Title": "Estampa :name",
     "Login-Title": "Login",

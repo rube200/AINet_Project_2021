@@ -3,6 +3,31 @@
 @section('content')
     <div class="container">
         <div class="row">
+            <form action="{{route('profile.index')}}" class="form-group" method="GET">
+                <div class="align-items-center row">
+                    <div class="col-8">
+                        <input class="form-control" id="search" name="search" placeholder="Name" type="text">
+                    </div>
+                    <div class="col-2">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="tipo">{{__('Types-Label')}}</label>
+                            </div>
+                            <select class="custom-select" id="tipo" name="tipo">
+                                <option {{'' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="">Todos</option>
+                                <option {{'A' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="A">{{__('Admins-Text')}}</option>
+                                <option {{'F' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="F">{{__('Employee-Text')}}</option>
+                                <option {{'C' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="C">{{__('Customer-Text')}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-outline-secondary" type="submit">{{__('Filter-Button')}}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
             <table class="table">
                 <thead>
                 <tr>
@@ -17,7 +42,7 @@
                 @foreach ($users as $user)
                     <tr>
                         <td>
-                            <img class="profile-icon" src="{{$user->img}}"/>
+                            <img alt="" class="profile-icon" src="{{$user->img}}"/>
                         </td>
                         <td>
                             {{$user->name}}
@@ -63,19 +88,5 @@
         <div class="row">
             {{$users->withQueryString()->links()}}
         </div>
-        {{-- todo filter
-        <form method="GET" action="{{route('profile.index')}}" class="form-group">
-            <div class="input-group">
-                <select class="custom-select" name="curso" id="inputCurso" aria-label="Curso">
-                    <option value="" {{'' == old('curso', $selectedCurso) ? 'selected' : ''}}>Todos Cursos</option>
-                    @foreach ($cursos as $abr => $nome)
-                        <option value={{$abr}} {{$abr == old('curso', $selectedCurso) ? 'selected' : ''}}>{{$nome}}</option>
-                    @endforeach
-                </select>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
-                </div>
-            </div>
-        </form>--}}
     </div>
 @endsection

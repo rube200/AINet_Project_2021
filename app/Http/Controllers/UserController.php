@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserPost;
 use App\Models\Cliente;
+use App\Models\Curso;
+use App\Models\Disciplina;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -21,13 +24,25 @@ class UserController extends Controller
         ]);
     }
 
-    public function index(): View
+    public function index(Request $request): View
     {
-        $users = User::select('id', 'name', 'tipo', 'bloqueado', 'foto_url')->orderBy('name')->paginate(20);
+        $query = User::select('id', 'name', 'tipo', 'bloqueado', 'foto_url');
+
+        $tipo = $request->tipo ?? '';
+        if ($tipo){
+            $query->where('tipo', $tipo);
+        }
+
+        $searchName = $request->search ?? '';
+        if ($searchName){
+            $query->where('name', 'LIKE', '%' . $searchName . '%');
+        }
+
+        $users = $query->orderBy('name')->paginate(20);
         foreach ($users as $user)
             UserController::prepareEstampaImage($user);
 
-        return view('profiles.profiles')->withUsers($users);
+        return view('profiles.profiles')->withUsers($users)->withSelectedTipo($tipo);
     }
 
     public function create()
