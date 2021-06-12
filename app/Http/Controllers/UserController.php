@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function index(): View
     {
-        $users = User::select('id', 'name', 'tipo', 'bloqueado', 'foto_url')->orderBy('id')->paginate(20);
+        $users = User::select('id', 'name', 'tipo', 'bloqueado', 'foto_url')->orderBy('name')->paginate(20);
         foreach ($users as $user)
             UserController::prepareEstampaImage($user);
 
