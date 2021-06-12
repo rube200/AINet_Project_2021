@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes(['verify' => true]);
+Auth::routes(['register' => false, 'verify' => true]);
 Route::get('/', [ShopController::class, 'index'])->name('index');
 Route::get('estampa/{estampa}', [ShopController::class, 'show'])->middleware('can:view,estampa')->name('estampa.view');
 
