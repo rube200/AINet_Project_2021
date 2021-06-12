@@ -7,7 +7,6 @@ use Exception;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
 class BlockedUserMiddleware
 {
@@ -45,9 +44,10 @@ class BlockedUserMiddleware
             return $next($request);
 
         if ($user instanceof MustVerifyEmail && !$request->user()->hasVerifiedEmail()) {
-            return $request->expectsJson()
-                ? abort(403, 'Your email address is not verified.')
-                : redirect()->route('verification.notice');
+            if (!$request->expectsJson())
+                return redirect()->route('verification.notice');
+
+            abort(403, 'Your email address is not verified.');
         }
 
         return $next($request);
