@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserPost;
+use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -16,15 +17,10 @@ class UserController extends Controller
     public function __construct()
     {
         $this->authorizeResource(User::class, null, [
-            'except' => [ 'destroy', 'show', 'update' ] /* for some reason theses don't work */
+            'except' => [ 'create', 'destroy', 'edit', 'show', 'store', 'update' ] /* some of these dont work*/
         ]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return View
-     */
     public function index(): View
     {
         $users = User::select('id', 'name', 'tipo', 'bloqueado', 'foto_url')->orderBy('name')->paginate(20);
@@ -34,32 +30,33 @@ class UserController extends Controller
         return view('profiles.profiles')->withUsers($users);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function create()
     {
-        //
+        if (Auth::user())
+            return redirect()->back();
+
+        return view('profiles.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Response
-     */
-    public function store(Request $request)
+    public function store(UserPost $request): RedirectResponse
     {
-        //
+        if (Auth::user())
+            return redirect()->back();
+
+        $userData = $request->validated();
+        $userData['password'] = Hash::make($userData['password']);
+        $user = User::create($userData);
+
+        $client = new Cliente;
+        $client->id = $user->id;
+        $client->save();
+
+        /* todo need to warn about confirm email */
+        Auth::guard()->login($user);
+        return redirect()->route('index');
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return View
      * @throws AuthorizationException
      */
     public function show(int $id): View
@@ -72,22 +69,17 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
+     * @throws AuthorizationException
      */
-    public function edit($id)
+    public function edit(int $id)
     {
-        //
+        $target = User::findOrFail($id);
+        $this->authorize('update', $target);
+
+
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param UserPost $request
-     * @param int $id
-     * @return RedirectResponse
      * @throws AuthorizationException
      */
     public function update(UserPost $request, int $id): RedirectResponse
@@ -96,23 +88,19 @@ class UserController extends Controller
         $this->authorize('updateBlock', $target);
 
         $userData = $request->validated();
-
         /* todo use with to return msg */
-        if ($userData['toggleBlock'])
-        {
+        if ($userData['toggleBlock']) {
             $target->bloqueado = !$target->bloqueado;
             $target->save();
             return redirect()->back();
         }
 
+        //update data
+
         return redirect()->back();
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return RedirectResponse
      * @throws AuthorizationException
      */
     public function destroy(int $id): RedirectResponse
@@ -120,10 +108,11 @@ class UserController extends Controller
         $target = User::findOrFail($id);
         $this->authorize('delete', $target);
         $target->delete();
+
         return redirect()->back();
     }
 
-    public static function prepareEstampaImage(User $user)
+    protected static function prepareEstampaImage(User $user)
     {
         $path = 'public/fotos/' . $user->foto_url;
         if (!is_null($user->foto_url) && Storage::exists($path)) {
