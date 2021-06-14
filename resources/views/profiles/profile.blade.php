@@ -26,7 +26,8 @@
                     @method('PATCH')
                     <input name="toggleBlock" value="1" type="hidden">
                     <div class="col-auto">
-                        <button class="btn btn-danger btn-group-sm" type="submit">{{__(!$user->bloqueado ? 'Profile-Block' : 'Profile-Unblock')}}</button>
+                        <button class="btn btn-danger btn-group-sm"
+                                type="submit">{{__(!$user->bloqueado ? 'Profile-Block' : 'Profile-Unblock')}}</button>
                     </div>
                 </form>
             @endcan
@@ -40,9 +41,9 @@
                     </div>
                 </form>
             @endcan
-                <div class="col-auto">
-                    <a class="btn btn-secondary btn-sm" href="{{route('profile.index')}}">{{__('Back-Submit')}}</a>
-                </div>
+            <div class="col-auto">
+                <a class="btn btn-secondary btn-sm" href="{{route('profile.index')}}">{{__('Back-Submit')}}</a>
+            </div>
         </div>
     </div>
 @endsection

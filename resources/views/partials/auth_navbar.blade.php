@@ -7,9 +7,9 @@
                 {{Auth::user()->name}}
             </a>
             @can('viewAny', Auth::user())
-            <a class="dropdown-item" href="{{route('profile.index')}}">
-                {{__('Manage-Users')}}
-            </a>
+                <a class="dropdown-item" href="{{route('profile.index')}}">
+                    {{__('Manage-Users')}}
+                </a>
             @endcan
             <a class="dropdown-item" href="{{route('logout')}}"
                onclick="event.preventDefault();document.getElementById('logout-request').submit();">

@@ -40,7 +40,7 @@ class UserController extends Controller
         foreach ($users as $user)
             UserController::prepareEstampaImage($user);
 
-        return view('profiles.profiles')->withUsers($users)->withSelectedTipo($tipo);
+        return view('profiles.profiles')->withUsers($users)->withSelectedTipo($tipo)->withSearch($searchName);
     }
 
     protected static function prepareEstampaImage(User $user)

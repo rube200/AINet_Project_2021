@@ -5,7 +5,8 @@
         <div class="row">
             <div class="col-auto">
                 <img class="edit-profile-img-view" src="{{$user->img}}">
-                <form action="{{route('profile.update', $user)}}" class="row" enctype="multipart/form-data" method="POST" >
+                <form action="{{route('profile.update', $user)}}" class="row" enctype="multipart/form-data"
+                      method="POST">
                     @csrf
                     @method('PUT')
                     <input name="editProfile" value="1" type="hidden">
@@ -27,7 +28,8 @@
                     </div>
                     <div class="col-auto input-group">
                         <label class="input-group-text" for="inputName">{{__('Name-Input-Text')}}</label>
-                        <input class="form-control" id="inputName" name="name" value="{{old('name', $user->name)}}" type="text">
+                        <input class="form-control" id="inputName" name="name" value="{{old('name', $user->name)}}"
+                               type="text">
                         @error('name')
                         <div class="small text-danger">{{$message}}</div>
                         @enderror

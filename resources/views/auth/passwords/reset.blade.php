@@ -11,7 +11,8 @@
                         <label class="form-check-label" for="email">
                             {{__('Email-Input')}}
                         </label>
-                        <input autocomplete="email" autofocus class="form-control @error('email') is-invalid @enderror" id="email" name="email" required type="email" value="{{$email ?? old('email')}}">
+                        <input autocomplete="email" autofocus class="form-control @error('email') is-invalid @enderror"
+                               id="email" name="email" required type="email" value="{{$email ?? old('email')}}">
                         @error('email')
                         <strong>{{$message}}</strong>
                         @enderror
@@ -20,7 +21,8 @@
                         <label class="form-check-label" for="password">
                             {{__('Password-Input')}}
                         </label>
-                        <input autocomplete="new-password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required type="password">
+                        <input autocomplete="new-password" class="form-control @error('password') is-invalid @enderror"
+                               id="password" name="password" required type="password">
                         @error('password')
                         <strong>{{$message}}</strong>
                         @enderror
@@ -29,7 +31,8 @@
                         <label class="form-check-label" for="password-confirm">
                             {{__('Confirm-Password-Input')}}
                         </label>
-                        <input autocomplete="new-password" class="form-control" id="password-confirm" name="password_confirmation" required type="password">
+                        <input autocomplete="new-password" class="form-control" id="password-confirm"
+                               name="password_confirmation" required type="password">
                     </div>
                     <div class="col-auto">
                         <button class="btn btn-primary" type="submit">

@@ -7,17 +7,23 @@
                 <div class="align-items-center row">
                     <div class="col-8">
                         <div class="input-group">
-                            <input class="form-control" id="search" name="search" placeholder="Name" type="text">
+                            <input class="form-control" id="search" name="search"
+                                   placeholder="{{__('Search-Name-Placeholder')}}" value="{{old('search', $search)}}"
+                                   type="text">
                         </div>
                     </div>
                     <div class="col-2">
                         <div class="input-group">
-                            <label class="input-group-text" for="tipo">{{__('Types-Label')}}</label>
+                            <label class="input-group-text" for="tipo">{{__('Categories-Label')}}</label>
                             <select class="form-select" id="tipo" name="tipo">
-                                <option {{'' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="">{{__('All-Types-Text')}}</option>
-                                <option {{'A' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="A">{{__('Admins-Text')}}</option>
-                                <option {{'F' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="F">{{__('Employee-Text')}}</option>
-                                <option {{'C' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="C">{{__('Customer-Text')}}</option>
+                                <option
+                                    {{'' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="">{{__('All-Types-Text')}}</option>
+                                <option
+                                    {{'A' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="A">{{__('Admins-Text')}}</option>
+                                <option
+                                    {{'F' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="F">{{__('Employee-Text')}}</option>
+                                <option
+                                    {{'C' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="C">{{__('Customer-Text')}}</option>
                             </select>
                         </div>
                     </div>
@@ -51,7 +57,8 @@
                         </td>
                         <td>
                             @can('view', $user)
-                                <a class="btn btn-success btn-sm" href="{{route('profile.show', $user)}}">{{__('Profile-More-Details-Text')}}</a>
+                                <a class="btn btn-success btn-sm"
+                                   href="{{route('profile.show', $user)}}">{{__('Profile-More-Details-Text')}}</a>
                             @endcan
                         </td>
                         <td>
@@ -61,7 +68,8 @@
                                     @method('PATCH')
                                     <input name="toggleBlock" value="1" type="hidden">
                                     <div class="col-auto">
-                                        <button class="btn btn-danger btn-sm" type="submit">{{__(!$user->bloqueado ? 'Profile-Block' : 'Profile-Unblock')}}</button>
+                                        <button class="btn btn-danger btn-sm"
+                                                type="submit">{{__(!$user->bloqueado ? 'Profile-Block' : 'Profile-Unblock')}}</button>
                                     </div>
                                 </form>
                             @endcan
@@ -72,7 +80,8 @@
                                     @csrf
                                     @method("DELETE")
                                     <div class="col-auto">
-                                        <input class="btn btn-danger btn-sm" type="submit" value="{{__('Profile-Delete-Text')}}"/>
+                                        <input class="btn btn-danger btn-sm" type="submit"
+                                               value="{{__('Profile-Delete-Text')}}"/>
                                     </div>
                                 </form>
                             @endcan

@@ -15,7 +15,8 @@
                         <label class="form-check-label" for="email">
                             {{__('Email-Input')}}
                         </label>
-                        <input autocomplete="email" autofocus class="form-control @error('email') is-invalid @enderror" id="email" name="email" required type="email" value="{{old('email')}}">
+                        <input autocomplete="email" autofocus class="form-control @error('email') is-invalid @enderror"
+                               id="email" name="email" required type="email" value="{{old('email')}}">
                         @error('email')
                         <strong>{{$message}}</strong>
                         @enderror

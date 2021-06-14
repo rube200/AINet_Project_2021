@@ -32,7 +32,8 @@
                         @enderror
                     </div>
                     <div class="col-auto">
-                        <input {{old('remember') ? 'checked' : ''}} class="form-check-input remember-checkbox" id="remember"
+                        <input {{old('remember') ? 'checked' : ''}} class="form-check-input remember-checkbox"
+                               id="remember"
                                name="remember" type="checkbox">
                         <label class="form-check-label" for="remember">
                             {{__('Remember-Input')}}
