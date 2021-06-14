@@ -3,20 +3,12 @@
 namespace App\Policies;
 
 use App\Models\User;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UserPolicy extends FuncionarioPolicy
+class UserPolicy extends InternalPolicy
 {
-    use HandlesAuthorization;
-
     public function viewAny(User $user): bool
     {
         return $this->isAdmin($user);
-    }
-
-    public static function isAdmin(User $user): bool
-    {
-        return strtoupper($user->tipo) == 'A';
     }
 
     public function view(User $user, User $model): bool
@@ -35,8 +27,6 @@ class UserPolicy extends FuncionarioPolicy
         return $user->id == $model->id;/* Resta apenas o cliente | Se for o proprio cliente autorizar */
     }
 
-    /** @noinspection PhpUnused */
-
     public function edit(User $user, User $model): bool
     {
         return $this->canViewOrUpdate($user, $model);
@@ -54,13 +44,12 @@ class UserPolicy extends FuncionarioPolicy
         return $user->id != $model->id && UserPolicy::isAdmin($user);
     }
 
-    /** @noinspection PhpUnusedParameterInspection */
-
     public function restore(User $user): bool
     {
         return UserPolicy::isAdmin($user);
     }
 
+    /** @noinspection PhpUnusedParameterInspection */
     public function forceDelete(User $user, User $model): bool
     {
         return false;

@@ -2,9 +2,10 @@
 
 namespace App\Policies;
 
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class FuncionarioPolicy
+class InternalPolicy
 {
     use HandlesAuthorization;
 
@@ -18,5 +19,10 @@ class FuncionarioPolicy
             default:
                 return false;
         }
+    }
+
+    public static function isAdmin(User $user): bool
+    {
+        return strtoupper($user->tipo) == 'A';
     }
 }
