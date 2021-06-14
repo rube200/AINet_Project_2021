@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static select(string...$args)
  * @property int cliente_id
  * @property string img
+ * @property string imagem_url
  */
 class Estampa extends Model
 {

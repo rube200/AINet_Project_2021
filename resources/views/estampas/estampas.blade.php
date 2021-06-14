@@ -1,9 +1,9 @@
-@extends('layouts.shop_layout')
+@extends('layouts.layout')
 @section('title', __('Shop-Title'))
 @section('content')
     <div class="container shop-container">
         <div class="row">
-            <form action="{{route('index')}}" class="row" method="GET">
+            <form action="{{route('estampa.index')}}" class="row" method="GET">
                 <div class="align-items-center row">
                     <div class="col-8">
                         <div class="input-group">
@@ -14,7 +14,7 @@
                     </div>
                     <div class="col-2">
                         <div class="input-group">
-                            <label class="input-group-text" for="categoria">{{__('Types-Label')}}</label>
+                            <label class="input-group-text" for="categoria">{{__('Categories-Label')}}</label>
                             <select class="form-select" id="categoria" name="categoria">
                                 <option
                                     {{'' == old('categoria', $categoriaEscolhida) ? 'selected' : ''}} value="">{{__('All-Types-Text')}}</option>

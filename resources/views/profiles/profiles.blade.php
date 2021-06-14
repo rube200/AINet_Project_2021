@@ -14,7 +14,7 @@
                     </div>
                     <div class="col-2">
                         <div class="input-group">
-                            <label class="input-group-text" for="tipo">{{__('Categories-Label')}}</label>
+                            <label class="input-group-text" for="tipo">{{__('Types-Label')}}</label>
                             <select class="form-select" id="tipo" name="tipo">
                                 <option
                                     {{'' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="">{{__('All-Types-Text')}}</option>

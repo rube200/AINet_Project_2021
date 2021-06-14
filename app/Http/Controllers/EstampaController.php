@@ -59,7 +59,8 @@ class EstampaController extends Controller
 
     public function create()
     {
-        return view('estampas.create');
+        $categorias = Categoria::pluck('nome', 'id');
+        return view('estampas.create')->withCategorias($categorias);
     }
 
     public function store(Request $request)

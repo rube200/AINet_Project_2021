@@ -39,9 +39,12 @@
     "Search-Name-Placeholder": "Name",
     "Search-Name-Description-Placeholder": "Name or Description",
     "Categories-Label": "Categories",
+    "None-Text": "None",
+
     "Cart-Title": "Cart",
     "Edit-Profile-Title": "Edit Profile",
     "Estampa-Title": "Estampa :name",
+    "New-Estampa-Title": "New Estampa",
     "Login-Title": "Login",
     "Profile-Title": "Profile",
     "Profiles-Title": "Profiles",

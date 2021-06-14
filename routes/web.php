@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\ShopController;
+use App\Http\Controllers\EstampaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -18,9 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes(['register' => false, 'verify' => true]);
-Route::get('/', [ShopController::class, 'index'])->name('index');
-Route::get('estampa/{estampa}', [ShopController::class, 'show'])->middleware('can:view,estampa')->name('estampa.view');
-
+Route::get('/', [EstampaController::class, 'index'])->name('index');
+Route::resource('estampa', EstampaController::class);
 Route::resource('profile', UserController::class);
 Route::delete('profile/{user}/resetphoto', [UserController::class, 'resetPhoto'])->name('profile.photo.destroy')->middleware('can:edit,user');
 

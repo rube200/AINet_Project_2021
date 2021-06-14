@@ -1,4 +1,4 @@
-@extends('layouts.shop_layout')
+@extends('layouts.layout')
 @section('title', __('Estampa-Title', ['name' => $estampa->nome]))
 @section('content')
     <div class="container">
