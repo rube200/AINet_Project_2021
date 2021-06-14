@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="refresh" content="30">
+{{--<meta http-equiv="refresh" content="30">TODO--}}
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{csrf_token()}}">
@@ -19,7 +19,9 @@
 <body>
 <div class="shop-body">
     @include('partials.navbar')
-    @yield('layout')
+    <main class="pb-4">
+        @yield('content')
+    </main>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"

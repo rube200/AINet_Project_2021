@@ -1,4 +1,4 @@
-@extends('layouts.profiles_layout')
+@extends('layouts.layout')
 @section('title', __('Profile-Title'))
 @section('content')
     <div class="container">

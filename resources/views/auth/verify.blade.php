@@ -1,4 +1,4 @@
-@extends('layouts.shop_layout')
+@extends('layouts.layout')
 @section('title', __('Verify-Email-Title'))
 @section('content')
     <div class="container">
