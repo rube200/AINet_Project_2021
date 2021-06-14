@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @property mixed cliente_id
+ * @method static select(string...$args)
+ * @property int cliente_id
+ * @property string img
  */
 class Estampa extends Model
 {

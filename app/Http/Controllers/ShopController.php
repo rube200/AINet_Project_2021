@@ -20,10 +20,8 @@ class ShopController extends Controller
         /*&& $user->hasVerifiedEmail()*/
         $estampasQuery = Estampa::select('id', 'nome', 'descricao', 'imagem_url', 'cliente_id');
         $user = Auth::user();
-        if (!is_null($user))
-        {
-            switch (strtoupper($user->tipo))
-            {
+        if (!is_null($user)) {
+            switch (strtoupper($user->tipo)) {
                 case 'A':
                 case 'F':
                     break;
@@ -31,9 +29,7 @@ class ShopController extends Controller
                 default:/* isto garante acesso apenas a funcionarios e admins mesmo que seja criado outro tipo */
                     $estampasQuery->whereRaw('(`cliente_id` is null or `cliente_id` = ?)', Auth::id());
             }
-        }
-        else
-        {
+        } else {
             $estampasQuery->whereNull('cliente_id');
         }
 
@@ -49,12 +45,6 @@ class ShopController extends Controller
         return view('shop.index')->withEstampas($estampas);
     }
 
-    public function show(Estampa $estampa)
-    {
-        $this->prepareEstampaImage($estampa);
-        return view('shop.estampa')->withEstampa($estampa);
-    }
-
     public function prepareEstampaImage(Estampa $estampa)
     {
         if (is_null($estampa->cliente_id)) {
@@ -68,5 +58,11 @@ class ShopController extends Controller
         } else {
             $estampa->img = asset('not_found');/*todo*/
         }
+    }
+
+    public function show(Estampa $estampa)
+    {
+        $this->prepareEstampaImage($estampa);
+        return view('shop.estampa')->withEstampa($estampa);
     }
 }

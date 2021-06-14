@@ -3,11 +3,11 @@
 @section('content')
     <div class="container">
         <div class="align-items-center card col-sm-4 mx-auto">
-            <form action="{{route('profile.store')}}" method="POST">
+            <form action="{{route('profile.store')}}" class="row" method="POST">
                 @csrf
                 <div class="card-body">
-                    <div class="form-group">
-                        <label class="form-check-label" for="name">
+                    <div class="col-auto">
+                        <label class="col-form-label" for="name">
                             {{__('Name-Input')}}
                         </label>
                         <input autocomplete="name" autofocus
@@ -17,8 +17,8 @@
                         <strong>{{ $message }}</strong>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label class="form-check-label" for="email">
+                    <div class="col-auto">
+                        <label class="col-form-label" for="email">
                             {{__('Email-Input')}}
                         </label>
                         <input autocomplete="email"
@@ -28,8 +28,8 @@
                         <strong>{{$message}}</strong>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label class="form-check-label" for="password">
+                    <div class="col-auto">
+                        <label class="col-form-label" for="password">
                             {{__('Password-Input')}}
                         </label>
                         <input autocomplete="new-password"
@@ -39,14 +39,14 @@
                         <strong>{{$message}}</strong>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label class="form-check-label" for="password-confirm">
+                    <div class="col-auto">
+                        <label class="col-form-label" for="password-confirm">
                             {{__('Confirm-Password-Input')}}
                         </label>
                         <input autocomplete="new-password" class="password-confirm-register form-control"
                                id="password-confirm" name="password_confirmation" required type="password">
                     </div>
-                    <div class="form-group">
+                    <div class="col-auto">
                         <button class="btn btn-primary" type="submit">
                             {{__('Register-Submit')}}
                         </button>

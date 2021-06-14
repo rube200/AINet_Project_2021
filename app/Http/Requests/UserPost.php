@@ -2,9 +2,13 @@
 
 namespace App\Http\Requests;
 
+use Faker\Core\File;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
+/**
+ * @property File photo
+ */
 class UserPost extends FormRequest
 {
     /**
@@ -14,8 +18,9 @@ class UserPost extends FormRequest
      */
     public function authorize(): bool
     {
+        $user = $this->user();
         if ($this->request->getBoolean('toggleBlock'))
-            return $this->user()->can('isAdmin', $this->user());
+            return $user->can('isAdmin', $user);
 
         return true;
     }
@@ -28,10 +33,13 @@ class UserPost extends FormRequest
     public function rules(): array
     {
         return [
-            'toggleBlock' => 'bail|sometimes|boolean',
-            'name' => 'exclude_if:toggleBlock,true|string|max:255',
-            'email' => 'exclude_if:toggleBlock,true|string|email|unique:users|max:255',
-            'password' => ['exclude_if:toggleBlock,true', Password::defaults(), 'confirmed']
+            'toggleBlock' => 'bail|sometimes|boolean',//if True block user
+            'editProfile' => 'sometimes|boolean',//if True edit user
+            //Else create user
+            'name' => 'exclude_if:toggleBlock,true|required|string|max:255',
+            'email' => 'exclude_if:toggleBlock,true|exclude_if:editProfile,true|required|string|email|unique:users|max:255',
+            'password' => ['exclude_if:toggleBlock,true', 'exclude_if:editProfile,true', 'required', Password::defaults(), 'confirmed'],
+            'photo' => 'exclude_if:toggleBlock,true|nullable|image|max:8192'
         ];
     }
 }

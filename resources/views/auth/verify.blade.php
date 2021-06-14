@@ -8,10 +8,10 @@
                     {{__('Comfirm-Email-Sent')}}
                 </div>
             @endif
-            <form action="{{route('verification.resend')}}" method="POST">
+            <form action="{{route('verification.resend')}}" class="row" method="POST">
                 @csrf
                 <div class="card-body">
-                    <div class="form-group">
+                    <div class="col-auto">
                         <button class="btn btn-primary" type="submit">
                             {{__('Resend-Email-Submit')}}
                         </button>

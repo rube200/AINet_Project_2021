@@ -67,19 +67,19 @@ html {
 }
 
 /* Profiles */
-.profile-card {
+.edit-profile-card, .profile-card {
     width: 500px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.profile-img-view {
-    height: 500px;
+.edit-profile-img-view, .profile-img-view {
+    height: 100%;
     margin-left: auto;
     margin-right: auto;
 }
 
 .profile-icon {
-    height:40px;
-    width:40px;
+    height: 40px;
+    width: 40px;
 }

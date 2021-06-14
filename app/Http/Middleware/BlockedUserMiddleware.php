@@ -24,15 +24,13 @@ class BlockedUserMiddleware
         if (!$user)
             return $next($request);
 
-        if ($user->bloqueado)
-        {
+        if ($user->bloqueado) {
             Auth::logout();
             //todo add account suspense msg
             return redirect()->route('login');
         }
 
-        switch ($request->url())
-        {
+        switch ($request->url()) {
             /* exclude basic auth stuff to not loop */
             case route('logout'):
             case route('verification.notice'):

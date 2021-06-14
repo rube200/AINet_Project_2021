@@ -2,16 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Cliente extends User
+/**
+ * @method static findOrFail(int $id)
+ * @property int id
+ */
+class Cliente extends Model
 {
-    /*use HasFactory, SoftDeletes;
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }*/
+    protected $fillable = [
+        'nif',
+    ];
 
     public function encomendas(): HasMany
     {
@@ -21,5 +24,10 @@ class Cliente extends User
     public function estampas(): HasMany
     {
         return $this->hasMany(Estampa::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

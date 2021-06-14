@@ -11,7 +11,16 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * @property int id
+ * @property string email
+ * @property string password
+ * @property string name
+ * @property boolean bloqueado
  * @property mixed tipo
+ * @property string img
+ * @property string foto_url
+ * @method static select(string...$args)
+ * @method static findOrFail(int $id)
+ * @method static create(array $array)
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -25,7 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'password'
     ];
 
     /**

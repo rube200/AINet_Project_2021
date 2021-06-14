@@ -3,10 +3,10 @@
 @section('content')
     <div class="container">
         <div class="align-items-center card col-sm-4 mx-auto">
-            <form action="{{route('login')}}" method="POST">
+            <form action="{{route('login')}}" class="row" method="POST">
                 @csrf
                 <div class="card-body">
-                    <div class="form-group">
+                    <div class="col-auto">
                         <label class="form-check-label" for="email">
                             {{__('Email-Input')}}
                         </label>
@@ -17,7 +17,7 @@
                         <strong>{{$message}}</strong>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div class="col-auto">
                         <label class="form-check-label" for="password">{{__('Password-Input')}}</label>
                         @if (Route::has('password.request'))
                             <a class="float-right" href="{{route('password.request')}}">
@@ -31,14 +31,14 @@
                         <strong>{{$message}}</strong>
                         @enderror
                     </div>
-                    <div class="form-check">
+                    <div class="col-auto">
                         <input {{old('remember') ? 'checked' : ''}} class="form-check-input remember-checkbox" id="remember"
                                name="remember" type="checkbox">
                         <label class="form-check-label" for="remember">
                             {{__('Remember-Input')}}
                         </label>
                     </div>
-                    <div class="form-group">
+                    <div class="col-auto">
                         <button class="btn btn-primary" type="submit">
                             {{__('Login-Submit')}}
                         </button>

@@ -3,18 +3,18 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <form action="{{route('profile.index')}}" class="form-group" method="GET">
+            <form action="{{route('profile.index')}}" class="row" method="GET">
                 <div class="align-items-center row">
                     <div class="col-8">
-                        <input class="form-control" id="search" name="search" placeholder="Name" type="text">
+                        <div class="input-group">
+                            <input class="form-control" id="search" name="search" placeholder="Name" type="text">
+                        </div>
                     </div>
                     <div class="col-2">
                         <div class="input-group">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="tipo">{{__('Types-Label')}}</label>
-                            </div>
-                            <select class="custom-select" id="tipo" name="tipo">
-                                <option {{'' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="">Todos</option>
+                            <label class="input-group-text" for="tipo">{{__('Types-Label')}}</label>
+                            <select class="form-select" id="tipo" name="tipo">
+                                <option {{'' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="">{{__('All-Types-Text')}}</option>
                                 <option {{'A' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="A">{{__('Admins-Text')}}</option>
                                 <option {{'F' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="F">{{__('Employee-Text')}}</option>
                                 <option {{'C' == old('tipo', $selectedTipo) ? 'selected' : ''}} value="C">{{__('Customer-Text')}}</option>
@@ -22,7 +22,9 @@
                         </div>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-outline-secondary" type="submit">{{__('Filter-Button')}}</button>
+                        <div class="input-group">
+                            <button class="btn btn-outline-secondary" type="submit">{{__('Filter-Button')}}</button>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -42,40 +44,35 @@
                 @foreach ($users as $user)
                     <tr>
                         <td>
-                            <img alt="" class="profile-icon" src="{{$user->img}}"/>
+                            <img class="profile-icon" src="{{$user->img}}"/>
                         </td>
                         <td>
                             {{$user->name}}
                         </td>
                         <td>
-                            @can('updateBlock', $user)
-                                <form action="{{route('profile.update', $user)}}" method="POST">
-                                    @csrf
-                                    @method('PATCH')
-                                    <input name="toggleBlock" value="1" type="hidden">
-                                    <div class="form-group">
-                                        <button class="btn btn-success" type="submit">{{!$user->bloqueado ? 'Bloquear' : 'Desbloquear'}}</button>
-                                    </div>
-                                </form>
+                            @can('view', $user)
+                                <a class="btn btn-success btn-sm" href="{{route('profile.show', $user)}}">{{__('Profile-More-Details-Text')}}</a>
                             @endcan
                         </td>
                         <td>
-                            @can('edit', $user)
-                                <form action="#" method="GET">
+                            @can('updateBlock', $user)
+                                <form action="{{route('profile.update', $user)}}" class="row" method="POST">
                                     @csrf
-                                    <div class="form-group">
-                                        <input type="submit" class="btn btn-danger btn-sm" value="Editar"/>
+                                    @method('PATCH')
+                                    <input name="toggleBlock" value="1" type="hidden">
+                                    <div class="col-auto">
+                                        <button class="btn btn-danger btn-sm" type="submit">{{__(!$user->bloqueado ? 'Profile-Block' : 'Profile-Unblock')}}</button>
                                     </div>
                                 </form>
                             @endcan
                         </td>
                         <td>
                             @can('delete', $user)
-                                <form action="{{route('profile.destroy', $user)}}" method="POST">
+                                <form action="{{route('profile.destroy', $user)}}" class="row" method="POST">
                                     @csrf
                                     @method("DELETE")
-                                    <div class="form-group">
-                                        <input class="btn btn-danger btn-sm" type="submit" value="Apagar"/>
+                                    <div class="col-auto">
+                                        <input class="btn btn-danger btn-sm" type="submit" value="{{__('Profile-Delete-Text')}}"/>
                                     </div>
                                 </form>
                             @endcan

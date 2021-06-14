@@ -3,11 +3,11 @@
 @section('content')
     <div class="container">
         <div class="align-items-center card col-sm-4 mx-auto">
-            <form action="{{route('password.update')}}" method="POST">
+            <form action="{{route('password.update')}}" class="row" method="POST">
                 @csrf
                 <input name="token" value="{{$token}}" type="hidden">
                 <div class="card-body">
-                    <div class="form-group">
+                    <div class="col-auto">
                         <label class="form-check-label" for="email">
                             {{__('Email-Input')}}
                         </label>
@@ -16,7 +16,7 @@
                         <strong>{{$message}}</strong>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div class="col-auto">
                         <label class="form-check-label" for="password">
                             {{__('Password-Input')}}
                         </label>
@@ -25,13 +25,13 @@
                         <strong>{{$message}}</strong>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div class="col-auto">
                         <label class="form-check-label" for="password-confirm">
                             {{__('Confirm-Password-Input')}}
                         </label>
                         <input autocomplete="new-password" class="form-control" id="password-confirm" name="password_confirmation" required type="password">
                     </div>
-                    <div class="form-group">
+                    <div class="col-auto">
                         <button class="btn btn-primary" type="submit">
                             {{__('Reset-Password-Submit')}}
                         </button>

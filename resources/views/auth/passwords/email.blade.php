@@ -8,10 +8,10 @@
                     {{session('status')}}
                 </div>
             @endif
-            <form action="{{route('password.email')}}" method="POST">
+            <form action="{{route('password.email')}}" class="row" method="POST">
                 @csrf
                 <div class="card-body">
-                    <div class="form-group">
+                    <div class="col-auto">
                         <label class="form-check-label" for="email">
                             {{__('Email-Input')}}
                         </label>
@@ -20,7 +20,7 @@
                         <strong>{{$message}}</strong>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div class="col-auto">
                         <button class="btn btn-primary" type="submit">
                             {{__('Reset-Password-Submit')}}
                         </button>
