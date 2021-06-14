@@ -8,8 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class ShopController extends Controller
+class EstampaController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Estampa::class);
+    }
+
     public function index(Request $request)
     {
         $query = Estampa::select('id', 'nome', 'descricao', 'imagem_url', 'cliente_id');
@@ -43,10 +48,41 @@ class ShopController extends Controller
             $this->prepareEstampaImage($estampa);
 
         $categorias = Categoria::pluck('nome', 'id');
-        return view('shop.index')->withEstampas($estampas)->withCategorias($categorias)->withCategoriaEscolhida($categoria)->withSearch($searchName);
+        return view('estampas.estampas')->withEstampas($estampas)->withCategorias($categorias)->withCategoriaEscolhida($categoria)->withSearch($searchName);
     }
 
-    public function prepareEstampaImage(Estampa $estampa)
+    public function show(Estampa $estampa)
+    {
+        $this->prepareEstampaImage($estampa);
+        return view('estampas.estampa')->withEstampa($estampa);
+    }
+
+    public function create()
+    {
+        return view('estampas.create');
+    }
+
+    public function store(Request $request)
+    {
+
+    }
+
+    public function edit(Estampa $estampa)
+    {
+
+    }
+
+    public function update(Request $request, Estampa $estampa)
+    {
+
+    }
+
+    public function destroy(Estampa $estampa)
+    {
+
+    }
+
+    protected static function prepareEstampaImage(Estampa $estampa)
     {
         if (is_null($estampa->cliente_id)) {
             $path = 'public/estampas/' . $estampa->imagem_url;
@@ -54,16 +90,6 @@ class ShopController extends Controller
             $path = 'estampas_privadas/' . $estampa->imagem_url;
         }
 
-        if (Storage::exists($path)) {
-            $estampa->img = 'data:image/png;base64,' . base64_encode(Storage::get($path));
-        } else {
-            $estampa->img = asset('not_found');/*todo*/
-        }
-    }
-
-    public function show(Estampa $estampa)
-    {
-        $this->prepareEstampaImage($estampa);
-        return view('shop.estampa')->withEstampa($estampa);
+        $estampa->img = 'data:image/png;base64,' . base64_encode(Storage::get($path));
     }
 }
