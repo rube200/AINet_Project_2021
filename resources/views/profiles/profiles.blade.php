@@ -40,7 +40,7 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>Nome</th>
+                    <th>{{__('Name-Table-Text')}}</th>
                     <th></th>
                     <th></th>
                     <th></th>

@@ -19,19 +19,19 @@ class EstampaController extends Controller
 
     public function index(Request $request)
     {
-        return EstampaController::displayEstampas($request, 'estampas.estampas');
+        return EstampaController::displayEstampas($request, 'prints.prints');
     }
 
     public function show(Estampa $estampa)
     {
         EstampaController::prepareEstampaImage($estampa);
-        return view('estampas.estampa')->withEstampa($estampa);
+        return view('prints.print')->withEstampa($estampa);
     }
 
     public function create()
     {
         $categorias = Categoria::pluck('nome', 'id');
-        return view('estampas.create')->withCategorias($categorias);
+        return view('prints.create')->withCategorias($categorias);
     }
 
     public function store(EstampaPost $request): RedirectResponse
@@ -50,7 +50,7 @@ class EstampaController extends Controller
     {
         EstampaController::prepareEstampaImage($estampa);
         $categorias = Categoria::pluck('nome', 'id');
-        return view('estampas.edit')->withEstampa($estampa)->withCategorias($categorias);
+        return view('prints.edit')->withEstampa($estampa)->withCategorias($categorias);
     }
 
     public function update(EstampaPost $request, Estampa $estampa): RedirectResponse
