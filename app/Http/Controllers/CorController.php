@@ -21,11 +21,18 @@ class CorController extends Controller
 
     public function store(CorPost $request): RedirectResponse
     {
-        $request['codigo'] = str_replace('#', '', $request['codigo']);//remover # para verificar duplicados
         $colorData = $request->validated();
 
-        $colorData['codigo'] = str_replace('#', '', $colorData['codigo']);//guardar cor com o codigo correto
-        Cor::create($colorData);
+        //Se o request for valido é pq a cor nao existe ou foi apagada
+        $cor = Cor::withTrashed()->find($colorData['codigo']);
+        if ($cor)
+        {
+            $cor->fill($colorData);
+            $cor->restore();
+        }
+        else
+            Cor::create($colorData);
+
         return redirect()->route('cor.index');
     }
 
@@ -40,6 +47,7 @@ class CorController extends Controller
 
         $cor->nome = $colorData['nome'];
         $cor->save();
+
         return redirect()->route('cor.index');
     }
 

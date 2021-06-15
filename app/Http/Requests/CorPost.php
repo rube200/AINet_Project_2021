@@ -6,8 +6,14 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CorPost extends FormRequest
 {
+    protected $stopOnFirstFailure = true;
+
     public function authorize()
     {
+        //remove # before validation
+        if ($this->request->has('codigo'))
+            $this->request->set('codigo',  str_replace('#', '', $this->request->get('codigo')));
+
         $user = $this->user();
         return $user->can('isAdmin', $user);
     }
@@ -15,9 +21,9 @@ class CorPost extends FormRequest
     public function rules(): array
     {
         return [
-            'editColor' => 'bail|sometimes|boolean',
-            'codigo' => 'exclude_if:editColor,true|required|unique:cores|string',
-            'nome' => 'required|unique:cores|string|max:255',
+            'editColor' => 'sometimes|boolean',
+            'codigo' => 'exclude_if:editColor,true|required|unique:cores,codigo,NULL,codigo,deleted_at,NULL|string',
+            'nome' => 'required|unique:cores,nome,NULL,codigo,deleted_at,NULL|string|max:255',
         ];
     }
 }
