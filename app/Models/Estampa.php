@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static select(string...$args)
+ * @method static create(array $estampaData)
  * @property int cliente_id
  * @property string img
  * @property string imagem_url
@@ -17,6 +18,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Estampa extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'nome',
+        'descricao',
+        'categoria_id',
+        'imagem_url'
+    ];
 
     public function categoria(): BelongsTo
     {
