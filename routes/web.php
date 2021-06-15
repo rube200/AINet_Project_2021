@@ -24,12 +24,14 @@ Auth::routes(['register' => false, 'verify' => true]);
 Route::get('/', [ShopController::class, 'index'])->name('index');
 Route::get('shopManage', [ShopController::class, 'shopManage'])->name('shopManage')->middleware('can:isAdmin,App\Models\User');
 
-Route::resource('estampa', EstampaController::class);
-Route::resource('categoria', CategoriaController::class);
-Route::resource('cor', CorController::class);
-
-Route::resource('profile', UserController::class);
 Route::delete('profile/{user}/resetphoto', [UserController::class, 'resetPhoto'])->name('profile.photo.destroy')->middleware('can:edit,user');
+Route::resources([
+    'estampa' => EstampaController::class,
+    'categoria' => CategoriaController::class,
+    'profile' => UserController::class,
+]);
+Route::resource('cor', CorController::class, ['except' => ['show']]);
+
 
 Route::prefix('cart')->name('cart.')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('index');
