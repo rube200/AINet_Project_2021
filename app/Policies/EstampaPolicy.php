@@ -8,15 +8,16 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class EstampaPolicy extends InternalPolicy
 {
-    /** @noinspection PhpUnusedParameterInspection */
-    public function viewAny(?User $user): bool
+    use HandlesAuthorization;
+
+    public function viewAny(User $user): bool
     {
-        return true;
+        return InternalPolicy::isAdmin($user);
     }
 
     public function view(?User $user, Estampa $estampa): bool
     {
-        if (EstampaPolicy::isFuncionario(optional($user)))
+        if (InternalPolicy::isFuncionario(optional($user)))
             return true;
 
         if (is_null($estampa->cliente_id))
@@ -27,7 +28,12 @@ class EstampaPolicy extends InternalPolicy
 
     public function create(User $user): bool
     {
-        return EstampaPolicy::isAdmin($user);
+        return InternalPolicy::isAdmin($user);
+    }
+
+    public function manage(User $user): bool
+    {
+        return InternalPolicy::isAdmin($user);
     }
 
     /**
