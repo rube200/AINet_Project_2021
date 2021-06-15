@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', __('Profile-Title'))
+@section('title', __('Profile-Title', ['name' => $user->name]))
 @section('content')
     <div class="container">
         <div class="row">
@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="row">
-            @can('view', $user)
+            @can('edit', $user)
                 <form action="{{route('profile.edit', $user)}}" class="row" method="GET">
                     <div class="col-auto">
                         <button class="btn btn-success btn-group-sm" type="submit">{{__('Profile-Edit-Text')}}</button>

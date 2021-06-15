@@ -38,12 +38,12 @@ class UserController extends Controller
 
         $users = $query->orderBy('name')->paginate(20);
         foreach ($users as $user)
-            UserController::prepareEstampaImage($user);
+            UserController::prepareUserImage($user);
 
         return view('profiles.profiles')->withUsers($users)->withSelectedTipo($tipo)->withSearch($searchName);
     }
 
-    protected static function prepareEstampaImage(User $user)
+    protected static function prepareUserImage(User $user)
     {
         $path = 'public/fotos/' . $user->foto_url;
         if (is_null($user->foto_url)) {
@@ -100,7 +100,7 @@ class UserController extends Controller
         $target = User::findOrFail($id);
         $this->authorize('view', $target);
 
-        UserController::prepareEstampaImage($target);
+        UserController::prepareUserImage($target);
         return view('profiles.profile')->withUser($target);
     }
 
@@ -112,7 +112,7 @@ class UserController extends Controller
         $target = User::findOrFail($id);
         $this->authorize('edit', $target);
 
-        UserController::prepareEstampaImage($target);
+        UserController::prepareUserImage($target);
         return view('profiles.edit')->withUser($target);
     }
 
