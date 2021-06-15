@@ -27,10 +27,12 @@ Route::get('shopManage', [ShopController::class, 'shopManage'])->name('shopManag
 Route::delete('profile/{user}/resetphoto', [UserController::class, 'resetPhoto'])->name('profile.photo.destroy')->middleware('can:edit,user');
 Route::resources([
     'estampa' => EstampaController::class,
-    'categoria' => CategoriaController::class,
     'profile' => UserController::class,
 ]);
-Route::resource('cor', CorController::class, ['except' => ['show']]);
+Route::resources([
+    'categoria' => CategoriaController::class,
+    'cor' => CorController::class,
+], ['except' => ['show']]);
 
 
 Route::prefix('cart')->name('cart.')->group(function () {

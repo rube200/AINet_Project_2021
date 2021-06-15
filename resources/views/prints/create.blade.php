@@ -51,6 +51,7 @@
                 <button class="btn btn-primary" type="submit">
                     {{__('New-Print-Submit')}}
                 </button>
+                <a class="btn btn-secondary" href="{{route('estampa.index')}}">{{__('Cancel-Submit')}}</a>
             </div>
         </form>
     </div>

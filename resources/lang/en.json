@@ -57,6 +57,13 @@
     "Color-Edit-Text": "Edit color",
     "Color-Delete-Text": "Delete color",
     "New-Color-Button": "New color",
+    "Name-Table-Text": "Name",
+    "New-Category-Button": "New Category",
+    "Category-Delete-Text": "Delete category",
+    "Category-Edit-Text": "Edit category",
+    "Category-Name-Input": "Name",
+    "New-Category-Submit": "Save Category",
+    "Category-Name-Placeholder": "Category name",
 
     "Cart-Title": "Cart",
     "Colors-Title": "Colors",

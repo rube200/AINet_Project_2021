@@ -57,7 +57,7 @@
                         <button class="btn btn-success" type="submit">
                             {{__('Save-Submit')}}
                         </button>
-                        <a class="btn btn-secondary" href="{{url()->previous()}}">{{__('Cancel-Submit')}}</a>
+                        <a class="btn btn-secondary" href="{{route('estampa.index')}}">{{__('Cancel-Submit')}}</a>
                     </div>
                 </form>
             </div>

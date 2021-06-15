@@ -24,6 +24,7 @@
                 <button class="btn btn-primary" type="submit">
                     {{__('New-Color-Submit')}}
                 </button>
+                <a class="btn btn-secondary" href="{{route('cor.index')}}">{{__('Cancel-Submit')}}</a>
             </div>
         </form>
     </div>
