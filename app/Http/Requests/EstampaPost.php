@@ -19,10 +19,10 @@ class EstampaPost extends FormRequest
     public function rules(): array
     {
         return [
-            'editEstampa' => 'bail|sometimes|boolean',
+            'editPrint' => 'bail|sometimes|boolean',
             'nome' => 'required|string|max:255',
             'descricao' => 'required|string|max:255',
-            'photo' => 'exclude_if:editEstampa,true|image|max:8192',
+            'photo' => 'required_unless:editPrint,true|image|max:8192',
             'categoria_id' => 'nullable|exists:categorias,id|integer'
         ];
     }

@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', __('Estampa-Title', ['name' => $estampa->nome]))
+@section('title', __('Print-Title', ['name' => $estampa->nome]))
 @section('content')
     <div class="container">
         <div class="row">

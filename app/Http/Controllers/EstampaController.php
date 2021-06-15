@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EstampaPost;
 use App\Models\Categoria;
 use App\Models\Estampa;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -16,6 +18,70 @@ class EstampaController extends Controller
     }
 
     public function index(Request $request)
+    {
+        return EstampaController::displayEstampas($request, 'estampas.estampas');
+    }
+
+    public function show(Estampa $estampa)
+    {
+        EstampaController::prepareEstampaImage($estampa);
+        return view('estampas.estampa')->withEstampa($estampa);
+    }
+
+    public function create()
+    {
+        $categorias = Categoria::pluck('nome', 'id');
+        return view('estampas.create')->withCategorias($categorias);
+    }
+
+    public function store(EstampaPost $request): RedirectResponse
+    {
+        $estampaData = $request->validated();
+        unset($estampaData['photo']);
+
+        $path = $request->photo->store('public/estampas/');
+        $estampaData['imagem_url'] = basename($path);
+
+        Estampa::create($estampaData);
+        return redirect()->route('estampa.index');
+    }
+
+    public function edit(Estampa $estampa)
+    {
+        EstampaController::prepareEstampaImage($estampa);
+        $categorias = Categoria::pluck('nome', 'id');
+        return view('estampas.edit')->withEstampa($estampa)->withCategorias($categorias);
+    }
+
+    public function update(EstampaPost $request, Estampa $estampa): RedirectResponse
+    {
+        $estampaData = $request->validated();
+        unset($estampaData['photo']);
+
+        if (is_null($estampa->cliente_id)) {
+            $path = 'public/estampas';
+        } else {
+            $path = 'estampas_privadas';
+        }
+
+        if ($request->hasFile('photo')) {
+            Storage::delete($path .'/' . $estampa->imagem_url);
+            $path = $request->photo->store($path);
+            $estampa->imagem_url = basename($path);
+        }
+        $estampa->fill($estampaData);
+        $estampa->save();
+
+        return redirect()->route('estampa.index');
+    }
+
+    public function destroy(Estampa $estampa): RedirectResponse
+    {
+        $estampa->delete();
+        return redirect()->back();
+    }
+
+    public static function displayEstampas(Request $request, string $viewName)
     {
         $query = Estampa::select('id', 'nome', 'descricao', 'imagem_url', 'cliente_id');
         $user = Auth::user();
@@ -45,45 +111,13 @@ class EstampaController extends Controller
 
         $estampas = $query->orderBy('id')->paginate(20);
         foreach ($estampas as $estampa)
-            $this->prepareEstampaImage($estampa);
+            EstampaController::prepareEstampaImage($estampa);
 
         $categorias = Categoria::pluck('nome', 'id');
-        return view('estampas.estampas')->withEstampas($estampas)->withCategorias($categorias)->withCategoriaEscolhida($categoria)->withSearch($searchName);
+        return view($viewName)->withEstampas($estampas)->withCategorias($categorias)->withCategoriaEscolhida($categoria)->withSearch($searchName);
     }
 
-    public function show(Estampa $estampa)
-    {
-        $this->prepareEstampaImage($estampa);
-        return view('estampas.estampa')->withEstampa($estampa);
-    }
-
-    public function create()
-    {
-        $categorias = Categoria::pluck('nome', 'id');
-        return view('estampas.create')->withCategorias($categorias);
-    }
-
-    public function store(Request $request)
-    {
-
-    }
-
-    public function edit(Estampa $estampa)
-    {
-
-    }
-
-    public function update(Request $request, Estampa $estampa)
-    {
-
-    }
-
-    public function destroy(Estampa $estampa)
-    {
-
-    }
-
-    protected static function prepareEstampaImage(Estampa $estampa)
+    public static function prepareEstampaImage(Estampa $estampa)
     {
         if (is_null($estampa->cliente_id)) {
             $path = 'public/estampas/' . $estampa->imagem_url;
