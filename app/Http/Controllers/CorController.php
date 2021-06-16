@@ -30,12 +30,10 @@ class CorController extends Controller
 
         //Se o request for valido é pq a cor nao existe ou foi apagada
         $cor = Cor::withTrashed()->find($colorData['codigo']);
-        if ($cor)
-        {
+        if ($cor) {
             $cor->fill($colorData);
             $cor->restore();
-        }
-        else
+        } else
             Cor::create($colorData);
 
         return redirect()->route('cor.index');

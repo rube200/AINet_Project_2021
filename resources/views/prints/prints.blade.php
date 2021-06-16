@@ -56,7 +56,8 @@
                                 @can('update', $estampa)
                                     <form action="{{route('estampa.edit', $estampa)}}" class="row" method="GET">
                                         <div class="col-auto">
-                                            <button class="btn btn-success btn-group-sm" type="submit">{{__('Print-Edit-Text')}}</button>
+                                            <button class="btn btn-success btn-group-sm"
+                                                    type="submit">{{__('Print-Edit-Text')}}</button>
                                         </div>
                                     </form>
                                 @endcan
@@ -69,7 +70,7 @@
                                                    value="{{__('Estampa-Delete-Text')}}"/>
                                         </div>
                                     </form>
-                                    @endcan
+                                @endcan
                             </div>
                         </a>
                     </div>

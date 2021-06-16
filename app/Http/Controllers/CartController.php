@@ -12,54 +12,29 @@ class CartController extends Controller
 {
     public function index()
     {
+        $preco = Preco::first();
+        $total = 0;
+
         $cart = session()->get('cart');
         if ($cart) {
             foreach ($cart as $id => $data) {
-                $cart[$id]['nome'] = Estampa::find($data['estampaId'])->nome;
-                $cart[$id]['url'] = CartController::getTShirtImage($data['color']);
+                $estampa = Estampa::find($data['estampaId']);
+                EstampaController::prepareEstampaImage($estampa);
+
+                $cart[$id]['nome'] = $estampa->nome;
+                $cart[$id]['tshirt-url'] = CartController::getTShirtImage($data['color']);
+                $cart[$id]['print-url'] = $estampa->img;
+                $subTotal = ($data['amount'] >= $preco->quantidade_desconto ? $data['preco_desconto'] : $data['preco']) * $data['amount'];
+                $cart[$id]['subtotal'] = $subTotal;
+                $total += $subTotal;
             }
-        }
-        else {
+        } else {
             $cart = [];
             session()->put('cart', $cart);
         }
 
-        $preco = Preco::first();
-        return view('shop.cart')->withCart($cart)->withPreco($preco);
-    }
 
-    public function add(CartPost $request): RedirectResponse
-    {
-        $data = $request->validated();
-        $estampa = Estampa::find($data['estampaId']);
-        $preco = Preco::first();
-
-        if (is_null($estampa->cliente_id))
-        {
-            $data['preco'] = $preco->preco_un_catalogo;
-            $data['preco_desconto'] = $preco->preco_un_catalogo_desconto;
-        }
-        else
-        {
-            $data['preco'] = $preco->preco_un_proprio;
-            $data['preco_desconto'] = $preco->preco_un_proprio_desconto;
-        }
-
-        $key = $data['estampaId'] . '_' . $data['color'] . '_' . $data['size'];
-        $cart = session()->get('cart');
-
-        if (!$cart) {
-            $cart = [$key => $data];
-        }
-        else if (isset($cart[$key])) {
-            $cart[$key]['amount'] += $data['amount'];
-        }
-        else {
-            $cart[$key] = $data;
-        }
-
-        session()->put('cart', $cart);
-        return redirect()->back();
+        return view('shop.cart')->withCart($cart)->withPreco($preco)->withTotal($total);
     }
 
     private static function getTShirtImage($color): string
@@ -70,5 +45,34 @@ class CartController extends Controller
         }
 
         return asset('storage/' . $path);
+    }
+
+    public function add(CartPost $request): RedirectResponse
+    {
+        $data = $request->validated();
+        $estampa = Estampa::find($data['estampaId']);
+        $preco = Preco::first();
+
+        if (is_null($estampa->cliente_id)) {
+            $data['preco'] = $preco->preco_un_catalogo;
+            $data['preco_desconto'] = $preco->preco_un_catalogo_desconto;
+        } else {
+            $data['preco'] = $preco->preco_un_proprio;
+            $data['preco_desconto'] = $preco->preco_un_proprio_desconto;
+        }
+
+        $key = $data['estampaId'] . '_' . $data['color'] . '_' . $data['size'];
+        $cart = session()->get('cart');
+
+        if (!$cart) {
+            $cart = [$key => $data];
+        } else if (isset($cart[$key])) {
+            $cart[$key]['amount'] += $data['amount'];
+        } else {
+            $cart[$key] = $data;
+        }
+
+        session()->put('cart', $cart);
+        return redirect()->back();
     }
 }

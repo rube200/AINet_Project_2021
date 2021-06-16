@@ -12,7 +12,7 @@ class CorPost extends FormRequest
     {
         //remove # before validation
         if ($this->request->has('codigo'))
-            $this->request->set('codigo',  str_replace('#', '', $this->request->get('codigo')));
+            $this->request->set('codigo', str_replace('#', '', $this->request->get('codigo')));
 
         $user = $this->user();
         return $user->can('isAdmin', $user);

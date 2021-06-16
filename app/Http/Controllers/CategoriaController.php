@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoriaPost;
 use App\Models\Categoria;
-use App\Models\Estampa;
-use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 
@@ -34,12 +32,10 @@ class CategoriaController extends Controller
         $categoryData = $request->validated();
 
         $category = Categoria::withTrashed()->where('nome', $categoryData['nome'])->first();
-        if ($category)
-        {
+        if ($category) {
             $category->fill($categoryData);
             $category->restore();
-        }
-        else
+        } else
             Categoria::create($categoryData);
 
         return redirect()->route('categoria.index');

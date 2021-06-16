@@ -103,20 +103,20 @@ html {
     color: white;
 }
 
-.profile-img{
+.profile-img {
     max-width: 25%;
     margin-top: 20px;
 }
 
-.row-btn{
+.row-btn {
     margin-top: 10px;
 }
 
-.new-print-btn{
+.new-print-btn {
     margin: 20px;
 }
 
-.search{
+.search {
     margin-bottom: 20px;
     text-align: center;
 }

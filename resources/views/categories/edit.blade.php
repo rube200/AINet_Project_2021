@@ -9,7 +9,8 @@
                 <label class="col-form-label" for="nome">
                     {{__('Category-Name-Input')}}
                 </label>
-                <input autocomplete="nome" class="form-control @error('nome') is-invalid @enderror" id="nome" name="nome" value="{{$categoria->nome}}" type="text">
+                <input autocomplete="nome" class="form-control @error('nome') is-invalid @enderror" id="nome"
+                       name="nome" value="{{$categoria->nome}}" type="text">
                 @error('nome')
                 <strong>{{$message}}</strong>
                 @enderror

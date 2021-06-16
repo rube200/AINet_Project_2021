@@ -1,9 +1,7 @@
-function AddCart(id, fullShow)
-{
+function AddCart(id, fullShow) {
     const elementId = 'add-to-cart-form-' + id;
     let mainElement = document.getElementById(elementId);
-    if (fullShow || mainElement.style.display === "block")
-    {
+    if (fullShow || mainElement.style.display === "block") {
         let ajax = new XMLHttpRequest();
         let formdata = new FormData(mainElement);
         ajax.onloadend = async function () {
@@ -18,12 +16,9 @@ function AddCart(id, fullShow)
         }
 
         ajax.open("POST", mainElement.action, true);
-        try
-        {
+        try {
             ajax.send(formdata);
-        }
-        catch (error)
-        {
+        } catch (error) {
             console.error(error);
         }
 
@@ -33,33 +28,27 @@ function AddCart(id, fullShow)
     }
 
     let elements = document.querySelectorAll('*[id^="add-to-cart-form-"]');
-    elements.forEach((elem) =>
-    {
+    elements.forEach((elem) => {
         if (elem === mainElement)
-            elem.style.display= "block";
+            elem.style.display = "block";
         else
             elem.style.display = 'none';
     });
 }
 
-function AddCartColorSelect(id)
-{
+function AddCartColorSelect(id) {
     let element = document.getElementById('add-cart-select-color-' + id);
     element.style.backgroundColor = '#' + element.value;
 }
 
-function AddCartAmountSelect(id)
-{
+function AddCartAmountSelect(id) {
     let amount = parseInt(document.getElementById('add-cart-amount-' + id).value);
     let discountAmount = parseInt(document.getElementById('discount-amount').value);
 
     let priceId;
-    if (amount >= discountAmount)
-    {
+    if (amount >= discountAmount) {
         priceId = 'preco-desconto-';
-    }
-    else
-    {
+    } else {
         priceId = 'preco-';
     }
 

@@ -24,16 +24,70 @@ class EstampaController extends Controller
         return EstampaController::displayEstampas($request, 'prints.prints');
     }
 
+    public static function displayEstampas(Request $request, string $viewName)
+    {
+        $query = Estampa::select('id', 'nome', 'descricao', 'imagem_url', 'cliente_id');
+        $user = Auth::user();
+        if (!is_null($user)) {
+            switch (strtoupper($user->tipo)) {
+                case 'A':
+                case 'F':
+                    break;
+
+                default:/* isto garante acesso apenas a funcionarios e admins mesmo que seja criado outro tipo */
+                    $query->whereRaw('(`cliente_id` is null or `cliente_id` = ?)', Auth::id());
+            }
+        } else {
+            $query->whereNull('cliente_id');
+        }
+
+        $categoria = $request->categoria ?? '';
+        if ($categoria) {
+            $query->where('categoria_id', $categoria);
+        }
+
+        $searchName = $request->search ?? '';
+        if ($searchName) {
+            $query->orWhere('nome', 'LIKE', '%' . $searchName . '%');
+            $query->orWhere('descricao', 'LIKE', '%' . $searchName . '%');
+        }
+
+        $preco = Preco::first();
+        $estampas = $query->orderBy('id')->paginate(20);
+        foreach ($estampas as $estampa) {
+            EstampaController::prepareEstampaImage($estampa);
+            if (is_null($estampa->cliente_id)) {
+                $estampa->preco = $preco->preco_un_catalogo;
+                $estampa->preco_desconto = $preco->preco_un_catalogo_desconto;
+            } else {
+                $estampa->preco = $preco->preco_un_proprio;
+                $estampa->preco_desconto = $preco->preco_un_proprio_desconto;
+            }
+        }
+
+        $categorias = Categoria::pluck('nome', 'id');
+        $cores = Cor::pluck('nome', 'codigo');
+        return view($viewName)->withDiscountAmount($preco->quantidade_desconto)->withEstampas($estampas)->withCategorias($categorias)->withCategoriaEscolhida($categoria)->withSearch($searchName)->withCores($cores)->withShow(false);
+    }
+
+    public static function prepareEstampaImage(Estampa $estampa)
+    {
+        if (is_null($estampa->cliente_id)) {
+            $path = 'public/estampas/' . $estampa->imagem_url;
+        } else {
+            $path = 'estampas_privadas/' . $estampa->imagem_url;
+        }
+
+        $estampa->img = 'data:image/png;base64,' . base64_encode(Storage::get($path));
+    }
+
     public function show(Estampa $estampa)
     {
         $preco = Preco::first();
-        if (is_null($estampa->cliente_id))
-        {
+        if (is_null($estampa->cliente_id)) {
             $estampa->preco = $preco->preco_un_catalogo;
             $estampa->preco_desconto = $preco->preco_un_catalogo_desconto;
-        }
-        else
-        {
+        } else {
             $estampa->preco = $preco->preco_un_proprio;
             $estampa->preco_desconto = $preco->preco_un_proprio_desconto;
         }
@@ -79,7 +133,7 @@ class EstampaController extends Controller
         }
 
         if ($request->hasFile('photo')) {
-            Storage::delete($path .'/' . $estampa->imagem_url);
+            Storage::delete($path . '/' . $estampa->imagem_url);
             $path = $request->photo->store($path);
             $estampa->imagem_url = basename($path);
         }
@@ -93,66 +147,5 @@ class EstampaController extends Controller
     {
         $estampa->delete();
         return redirect()->back();
-    }
-
-    public static function displayEstampas(Request $request, string $viewName)
-    {
-        $query = Estampa::select('id', 'nome', 'descricao', 'imagem_url', 'cliente_id');
-        $user = Auth::user();
-        if (!is_null($user)) {
-            switch (strtoupper($user->tipo)) {
-                case 'A':
-                case 'F':
-                    break;
-
-                default:/* isto garante acesso apenas a funcionarios e admins mesmo que seja criado outro tipo */
-                    $query->whereRaw('(`cliente_id` is null or `cliente_id` = ?)', Auth::id());
-            }
-        } else {
-            $query->whereNull('cliente_id');
-        }
-
-        $categoria = $request->categoria ?? '';
-        if ($categoria) {
-            $query->where('categoria_id', $categoria);
-        }
-
-        $searchName = $request->search ?? '';
-        if ($searchName) {
-            $query->orWhere('nome', 'LIKE', '%' . $searchName . '%');
-            $query->orWhere('descricao', 'LIKE', '%' . $searchName . '%');
-        }
-
-        $preco = Preco::first();
-        $estampas = $query->orderBy('id')->paginate(20);
-        foreach ($estampas as $estampa)
-        {
-            EstampaController::prepareEstampaImage($estampa);
-            if (is_null($estampa->cliente_id))
-            {
-                $estampa->preco = $preco->preco_un_catalogo;
-                $estampa->preco_desconto = $preco->preco_un_catalogo_desconto;
-            }
-            else
-            {
-                $estampa->preco = $preco->preco_un_proprio;
-                $estampa->preco_desconto = $preco->preco_un_proprio_desconto;
-            }
-        }
-
-        $categorias = Categoria::pluck('nome', 'id');
-        $cores = Cor::pluck('nome', 'codigo');
-        return view($viewName)->withDiscountAmount($preco->quantidade_desconto)->withEstampas($estampas)->withCategorias($categorias)->withCategoriaEscolhida($categoria)->withSearch($searchName)->withCores($cores)->withShow(false);
-    }
-
-    public static function prepareEstampaImage(Estampa $estampa)
-    {
-        if (is_null($estampa->cliente_id)) {
-            $path = 'public/estampas/' . $estampa->imagem_url;
-        } else {
-            $path = 'estampas_privadas/' . $estampa->imagem_url;
-        }
-
-        $estampa->img = 'data:image/png;base64,' . base64_encode(Storage::get($path));
     }
 }

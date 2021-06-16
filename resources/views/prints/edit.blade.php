@@ -25,7 +25,9 @@
                         <label class="col-form-label" for="descricao">
                             {{__('Print-Descricao-Input')}}
                         </label>
-                        <textarea autocomplete="descricao" class="form-control @error('descricao') is-invalid @enderror" id="descricao" name="descricao" type="text">{{old('descricao', $estampa->descricao)}}</textarea>
+                        <textarea autocomplete="descricao" class="form-control @error('descricao') is-invalid @enderror"
+                                  id="descricao" name="descricao"
+                                  type="text">{{old('descricao', $estampa->descricao)}}</textarea>
                         @error('descricao')
                         <strong>{{$message}}</strong>
                         @enderror
@@ -34,7 +36,8 @@
                         <div class="input-group">
                             <label class="input-group-text" for="categoria_id">{{__('Categories-Label')}}</label>
                             <select class="form-select" id="categoria_id" name="categoria_id">
-                                <option {{'' == old('categoria_id', $estampa->categoria_idcategoria_id) ? 'selected' : ''}} value="">{{__('None-Text')}}</option>
+                                <option
+                                    {{'' == old('categoria_id', $estampa->categoria_idcategoria_id) ? 'selected' : ''}} value="">{{__('None-Text')}}</option>
                                 @foreach($categorias as $id => $name)
                                     <option
                                         {{$id == old('categoria_id', $estampa->categoria_id) ? 'selected' : ''}} value="{{$id}}">{{$name}}</option>

@@ -19,7 +19,8 @@
                 <label class="col-form-label" for="descricao">
                     {{__('Print-Descricao-Input')}}
                 </label>
-                <textarea autocomplete="descricao" class="form-control @error('descricao') is-invalid @enderror" id="descricao" name="descricao" type="text">{{old('descricao')}}</textarea>
+                <textarea autocomplete="descricao" class="form-control @error('descricao') is-invalid @enderror"
+                          id="descricao" name="descricao" type="text">{{old('descricao')}}</textarea>
                 @error('descricao')
                 <strong>{{$message}}</strong>
                 @enderror

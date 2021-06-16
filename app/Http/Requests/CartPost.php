@@ -8,11 +8,6 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 class CartPost extends FormRequest
 {
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(response()->json($validator->errors(), 400));
-    }
-
     public function rules(): array
     {
         return [
@@ -21,5 +16,10 @@ class CartPost extends FormRequest
             'color' => 'required|exists:cores,codigo',
             'size' => 'required|in:XS,S,M,L,XL'
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json($validator->errors(), 400));
     }
 }
