@@ -139,10 +139,19 @@ html {
     background-color: white;
 }
 
-.total-cart,.name-shirt,.subtotal-shirt{
+.total-cart,.name-shirt,.subtotal-shirt,.empty-cart{
     font-weight: bold;
 }
 
 .subtotal-shirt{
     margin-top: 20px;
+}
+
+.empty-cart{
+    text-align: center;
+    color: red;
+}
+
+.back-btn{
+    max-width: auto;
 }

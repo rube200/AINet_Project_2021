@@ -35,7 +35,8 @@
         @endforeach
         @empty($cart)
             <div class="row">
-                <p>{{__('Cart-Empty')}}</p>
+                <p class="empty-cart">{{__('Cart-Empty')}}</p>
+                <a class="btn btn-secundary back-btn" href="{{route('index')}}">{{__('Back-Shop')}}</a>
             </div>
         @else
             <div class="row">
