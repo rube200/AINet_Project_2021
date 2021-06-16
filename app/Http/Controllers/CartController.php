@@ -7,6 +7,7 @@ use App\Models\Estampa;
 use App\Models\Preco;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
+use function PHPUnit\Framework\isEmpty;
 
 class CartController extends Controller
 {
@@ -18,6 +19,12 @@ class CartController extends Controller
         $cart = session()->get('cart');
         if ($cart) {
             foreach ($cart as $id => $data) {
+                if (empty($data))
+                {
+                    unset($cart[$id]);
+                    continue;
+                }
+
                 $estampa = Estampa::find($data['estampaId']);
                 EstampaController::prepareEstampaImage($estampa);
 
@@ -32,7 +39,6 @@ class CartController extends Controller
             $cart = [];
             session()->put('cart', $cart);
         }
-
 
         return view('shop.cart')->withCart($cart)->withPreco($preco)->withTotal($total);
     }
@@ -72,6 +78,20 @@ class CartController extends Controller
             $cart[$key] = $data;
         }
 
+        session()->put('cart', $cart);
+        return redirect()->back();
+    }
+
+    public function remove($id): RedirectResponse
+    {
+        $cart = session()->get('cart');
+        if (!$cart) {
+            return redirect()->back();
+        } else if (!isset($cart[$id])) {
+            return redirect()->back();
+        }
+
+        unset($cart[$id]);
         session()->put('cart', $cart);
         return redirect()->back();
     }

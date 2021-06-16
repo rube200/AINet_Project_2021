@@ -41,4 +41,5 @@ Route::put('preco', [PrecoController::class, 'update'])->name('preco.update')->m
 Route::prefix('cart')->name('cart.')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('index');
     Route::post('add', [CartController::class, 'add'])->name('add');
+    Route::post('remove/{productId}', [CartController::class, 'remove'])->name('remove');
 });
