@@ -2,7 +2,11 @@
 @section('title', __('Print-Title', ['name' => $estampa->nome]))
 @section('content')
     <div class="container">
+        <div class="alert alert-success text-center" id="added-to-cart-alert" role="alert" style="display: none">
+            {{__('Add-Cart-Alert')}}
+        </div>
         <div class="row">
+            <input id="discount-amount" value="{{$discountAmount}}" type="hidden">
             <div class="col-md">
                 <img class="estampa-img" src="{{$estampa->img}}">
             </div>

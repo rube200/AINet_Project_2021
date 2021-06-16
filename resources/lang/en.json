@@ -3,6 +3,7 @@
     "Add-To-Car-Amount": "Amount:",
     "Add-To-Car-Color": "Color:",
     "Add-To-Car-Size": "TShirt size:",
+    "Add-Cart-Alert": "Added to cart with success",
     "Cart": "cart",
     "Login-Button": "Login",
     "Email-Input": "Email Address:",
@@ -78,6 +79,8 @@
     "Costumer-Print-Single-Text": "Customer print price:",
     "Costumer-Print-Discount-Text": "Customer print price(with discount | per item):",
     "Discount-Amount-Text": "Amount for discount",
+    "Shop-Print-Price": "Price: :price€ (per unit)",
+    "Shop-Print-Price-Total": "Total: :price€",
 
     "Cart-Title": "Cart",
     "Colors-Title": "Colors",

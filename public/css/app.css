@@ -92,3 +92,13 @@ html {
 .add-cart-form {
     background-color: white;
 }
+
+.cart-icon-div {
+    height: 2em;
+    width: 2em;
+    color: white;
+}
+
+.cart-icon-div:hover {
+    color: white;
+}

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CartPost;
+use App\Models\Estampa;
+use App\Models\Preco;
 use Illuminate\Http\RedirectResponse;
 
 class CartController extends Controller
@@ -14,14 +16,26 @@ class CartController extends Controller
             $cart = [];
             session()->put('cart', $cart);
         }
-        return view('cart.index');
+        return view('shop.cart')->withCart($cart);
     }
 
     public function add(CartPost $request): RedirectResponse
     {
         $data = $request->validated();
+        $estampa = Estampa::find($data['estampaId']);
+        $preco = Preco::first();
 
-        dd('va');
+        if (is_null($estampa->cliente_id))
+        {
+            $data['preco'] = $preco->preco_un_catalogo;
+            $data['preco_desconto'] = $preco->preco_un_catalogo_desconto;
+        }
+        else
+        {
+            $data['preco'] = $preco->preco_un_proprio;
+            $data['preco_desconto'] = $preco->preco_un_proprio_desconto;
+        }
+
         $key = $data['estampaId'] . '_' . $data['color'] . '_' . $data['size'];
         $cart = session()->get('cart');
 

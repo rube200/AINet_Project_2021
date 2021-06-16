@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @method static select(string...$args)
  * @method static create(array $estampaData)
+ * @method static find(mixed $estampaId)
  * @property int cliente_id
  * @property string img
  * @property string imagem_url

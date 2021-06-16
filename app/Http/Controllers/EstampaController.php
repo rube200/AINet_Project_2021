@@ -6,6 +6,7 @@ use App\Http\Requests\EstampaPost;
 use App\Models\Categoria;
 use App\Models\Cor;
 use App\Models\Estampa;
+use App\Models\Preco;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,9 +26,20 @@ class EstampaController extends Controller
 
     public function show(Estampa $estampa)
     {
+        $preco = Preco::first();
+        if (is_null($estampa->cliente_id))
+        {
+            $estampa->preco = $preco->preco_un_catalogo;
+            $estampa->preco_desconto = $preco->preco_un_catalogo_desconto;
+        }
+        else
+        {
+            $estampa->preco = $preco->preco_un_proprio;
+            $estampa->preco_desconto = $preco->preco_un_proprio_desconto;
+        }
         EstampaController::prepareEstampaImage($estampa);
         $cores = Cor::pluck('nome', 'codigo');
-        return view('prints.print')->withEstampa($estampa)->withCores($cores)->withShow(true);
+        return view('prints.print')->withDiscountAmount($preco->quantidade_desconto)->withEstampa($estampa)->withCores($cores)->withShow(true);
     }
 
     public function create()
@@ -111,13 +123,26 @@ class EstampaController extends Controller
             $query->orWhere('descricao', 'LIKE', '%' . $searchName . '%');
         }
 
+        $preco = Preco::first();
         $estampas = $query->orderBy('id')->paginate(20);
         foreach ($estampas as $estampa)
+        {
             EstampaController::prepareEstampaImage($estampa);
+            if (is_null($estampa->cliente_id))
+            {
+                $estampa->preco = $preco->preco_un_catalogo;
+                $estampa->preco_desconto = $preco->preco_un_catalogo_desconto;
+            }
+            else
+            {
+                $estampa->preco = $preco->preco_un_proprio;
+                $estampa->preco_desconto = $preco->preco_un_proprio_desconto;
+            }
+        }
 
         $categorias = Categoria::pluck('nome', 'id');
         $cores = Cor::pluck('nome', 'codigo');
-        return view($viewName)->withEstampas($estampas)->withCategorias($categorias)->withCategoriaEscolhida($categoria)->withSearch($searchName)->withCores($cores)->withShow(false);
+        return view($viewName)->withDiscountAmount($preco->quantidade_desconto)->withEstampas($estampas)->withCategorias($categorias)->withCategoriaEscolhida($categoria)->withSearch($searchName)->withCores($cores)->withShow(false);
     }
 
     public static function prepareEstampaImage(Estampa $estampa)
