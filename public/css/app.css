@@ -121,37 +121,34 @@ html {
     text-align: center;
 }
 
-.shirt-row{
+.shirt-row {
     background-color: azure;
     margin: 10px;
     border-style: solid;
-    border-color:lightsteelblue;
+    border-color: lightsteelblue;
     border-width: 2px;
     border-radius: 15px;
 }
 
-.print-img,.shirt-img{
+.print-img, .shirt-img {
     max-width: 100px;
     margin-top: 15px;
 }
 
-.print-img{
+.print-img {
     background-color: white;
 }
 
-.total-cart,.name-shirt,.subtotal-shirt,.empty-cart{
+
+.total-cart, .name-shirt, .subtotal-shirt, .empty-cart {
     font-weight: bold;
 }
 
-.subtotal-shirt{
+.subtotal-shirt {
     margin-top: 20px;
 }
 
-.empty-cart{
+.empty-cart {
     text-align: center;
     color: red;
-}
-
-.back-btn{
-    max-width: auto;
 }
