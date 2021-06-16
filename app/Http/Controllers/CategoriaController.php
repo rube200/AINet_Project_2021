@@ -51,7 +51,7 @@ class CategoriaController extends Controller
     public function edit(int $id)
     {
         $categoria = Categoria::findOrFail($id);
-        $this->authorize('edit', $categoria);
+        $this->authorize('update', $categoria);
 
         return view('categories.edit')->withCategoria($categoria);
     }
@@ -62,7 +62,7 @@ class CategoriaController extends Controller
     public function update(CategoriaPost $request, int $id): RedirectResponse
     {
         $categoria = Categoria::findOrFail($id);
-        $this->authorize('edit', $categoria);
+        $this->authorize('update', $categoria);
 
         $colorData = $request->validated();
         $categoria->nome = $colorData['nome'];
