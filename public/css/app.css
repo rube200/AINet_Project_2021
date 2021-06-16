@@ -120,3 +120,29 @@ html {
     margin-bottom: 20px;
     text-align: center;
 }
+
+.shirt-row{
+    background-color: azure;
+    margin: 10px;
+    border-style: solid;
+    border-color:lightsteelblue;
+    border-width: 2px;
+    border-radius: 15px;
+}
+
+.print-img,.shirt-img{
+    max-width: 100px;
+    margin-top: 15px;
+}
+
+.print-img{
+    background-color: white;
+}
+
+.total-cart,.name-shirt,.subtotal-shirt{
+    font-weight: bold;
+}
+
+.subtotal-shirt{
+    margin-top: 20px;
+}

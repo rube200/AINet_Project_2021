@@ -3,23 +3,24 @@
 @section('content')
     <div class="container">
         @foreach($cart as $id => $data)
-            <form action="{{route('cart.remove', $id)}}" class="row" id="remove-from-cart-form-{{$id}}" method="POST">
+            <form action="{{route('cart.remove', $id)}}" class="row shirt-row" id="remove-from-cart-form-{{$id}}" method="POST">
                 @csrf
                 <input name="estampaId" value="{{$data['estampaId']}}" type="hidden">
                 <input id="preco-{{$id}}" value="{{$data['preco']}}" type="hidden">
                 <input id="preco-desconto-{{$id}}" value="{{$data['preco_desconto']}}" type="hidden">
 
                 <div class="col-auto">
-                    <img src="{{$data['tshirt-url']}}" style="max-width: 100px">
-                    <img src="{{$data['print-url']}}" style="max-width: 100px">
+                    <br/>
+                    <img class="shirt-img" src="{{$data['tshirt-url']}}" >
+                    <img class="print-img" src="{{$data['print-url']}}">
                 </div>
 
                 <div class="align-self-center col-md tex-col">
-                    <p>{{__('Cart-Display-Name', ['name' => $data['nome']])}}</p>
-                    <p>{{__('Cart-Display-Amount', ['amount' => $data['amount']])}}</p>
-                    <p>{{__('Cart-Display-Size', ['size' => $data['size']])}}</p>
-                    <p>{{__('Cart-Display-Price', ['price' => $data['preco']])}}</p>
-                    <p>{{__('Cart-Display-Subtotal', ['price' => $data['subtotal']])}}</p>
+                    <p class="name-shirt">{{__('Cart-Display-Name', ['name' => $data['nome']])}}</p>
+                    <p class="amout-shirt">{{__('Cart-Display-Amount', ['amount' => $data['amount']])}}</p>
+                    <p class="size-shirt">{{__('Cart-Display-Size', ['size' => $data['size']])}}</p>
+                    <p class="price-shirt">{{__('Cart-Display-Price', ['price' => $data['preco']])}}</p>
+                    <p class="subtotal-shirt">{{__('Cart-Display-Subtotal', ['price' => $data['subtotal']])}}</p>
                 </div>
 
                 <div class="col-auto">
@@ -35,7 +36,7 @@
             </div>
         @else
             <div class="row">
-                <p>{{__('Cart-Display-Total', ['price' => $total])}}</p>
+                <p class="total-cart">{{__('Cart-Display-Total', ['price' => $total])}}</p>
             </div>
         @endempty
     </div>
