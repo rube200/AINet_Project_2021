@@ -24,7 +24,10 @@
                 </div>
 
                 <div class="col-auto">
-                    <button class="btn btn-secondary">
+                    <br>
+                    <br>
+                    <br>
+                    <button class="btn btn-danger delete-btn">
                         {{__('Delete-From-Cart')}}
                     </button>
                 </div>
