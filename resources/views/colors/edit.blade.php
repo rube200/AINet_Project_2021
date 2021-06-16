@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', __('New-Color-Title'))
+@section('title', __('New-Color-Title', ['name' => $color->codigo]))
 @section('content')
     <div class="container">
         <form action="{{route('cor.update', $color)}}" class="row" method="POST">

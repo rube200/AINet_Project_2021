@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', __('New-Color-Title'))
+@section('title', __('Edit-Price-Title'))
 @section('content')
     <div class="container">
         <form action="{{route('preco.update')}}" class="row" method="POST">

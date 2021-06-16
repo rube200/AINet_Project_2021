@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', __('New-Color-Title'))
+@section('title', __('Edit-Category-Title', ['name' => $categoria->nome]))
 @section('content')
     <div class="container">
         <form action="{{route('categoria.update', $categoria)}}" class="row" method="POST">

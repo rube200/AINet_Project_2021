@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', __('Colors-Title'))
+@section('title', __('Categories-Title'))
 @section('content')
     <div class="container">
         <div class="row">
@@ -19,7 +19,6 @@
                     <th></th>
                     <th></th>
                 </tr>
-                </thead>
                 </thead>
                 <tbody>
                 @foreach ($categorias as $categoria)

@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', __('New-Color-Title'))
+@section('title', __('New-Category-Title'))
 @section('content')
     <div class="container">
         <form action="{{route('categoria.store')}}" class="row" method="POST">

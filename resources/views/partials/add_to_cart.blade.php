@@ -6,7 +6,7 @@
     <input id="preco-{{$estampa->id}}" value="{{$estampa->preco}}" type="hidden">
     <input id="preco-desconto-{{$estampa->id}}" value="{{$estampa->preco_desconto}}" type="hidden">
     <div class="col-auto">
-        <label for="amount-{{$estampa->id}}">
+        <label for="add-cart-amount-{{$estampa->id}}">
             {{__('Add-To-Car-Amount')}}
         </label>
         <input class="form-control" id="add-cart-amount-{{$estampa->id}}" name="amount" min="1" value="{{old('amount', 1)}}" type="number" onchange="AddCartAmountSelect({{$estampa->id}})">
