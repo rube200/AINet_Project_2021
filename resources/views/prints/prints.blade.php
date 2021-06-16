@@ -2,7 +2,7 @@
 @section('title', __('Shop-Title'))
 @section('content')
     <div class="container shop-container">
-        <div class="row">
+        <div class="row new-print-btn">
             <form action="{{route('estampa.create')}}" class="row" method="GET">
                 <div class="col-auto">
                     <div class="input-group">
@@ -24,7 +24,7 @@
                     <div class="col-2">
                         <div class="input-group">
                             <label class="input-group-text" for="categoria">{{__('Categories-Label')}}</label>
-                            <select class="form-select" id="categoria" name="categoria">
+                            <select class="form-select drop-categorias" id="categoria" name="categoria">
                                 <option
                                     {{'' == old('categoria', $categoriaEscolhida) ? 'selected' : ''}} value="">{{__('All-Types-Text')}}</option>
                                 @foreach($categorias as $id => $name)
