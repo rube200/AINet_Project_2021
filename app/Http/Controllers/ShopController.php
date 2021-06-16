@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Preco;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -13,6 +14,7 @@ class ShopController extends Controller
 
     public function shopManage()
     {
-        return view('shop.manage_menu');
+        $preco = Preco::first();
+        return view('shop.manage_menu')->withPreco($preco);
     }
 }

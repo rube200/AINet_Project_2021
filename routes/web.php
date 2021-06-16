@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CorController;
 use App\Http\Controllers\EstampaController;
+use App\Http\Controllers\PrecoController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,8 @@ Route::resources([
     'cor' => CorController::class,
 ], ['except' => ['show']]);
 
+Route::get('preco/edit', [PrecoController::class, 'edit'])->name('preco.edit');
+Route::put('preco', [PrecoController::class, 'update'])->name('preco.update');
 
 Route::prefix('cart')->name('cart.')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('index');

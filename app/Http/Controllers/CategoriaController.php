@@ -35,14 +35,16 @@ class CategoriaController extends Controller
         return redirect()->route('categoria.index');
     }
 
-    public function edit(Categoria $categoria)
+    public function edit(int $id)
     {
+        $categoria = Categoria::findOrFail($id);
         return view('categories.edit')->withCategoria($categoria);
     }
 
-    public function update(CategoriaPost $request, Categoria $categoria): RedirectResponse
+    public function update(CategoriaPost $request, int $id): RedirectResponse
     {
         $colorData = $request->validated();
+        $categoria = Categoria::findOrFail($id);
 
         $categoria->nome = $colorData['nome'];
         $categoria->save();
@@ -50,8 +52,9 @@ class CategoriaController extends Controller
         return redirect()->route('categoria.index');
     }
 
-    public function destroy(Categoria $categoria): RedirectResponse
+    public function destroy(int $id): RedirectResponse
     {
+        $categoria = Categoria::findOrFail($id);
         $categoria->delete();
         return redirect()->route('categoria.index');
     }

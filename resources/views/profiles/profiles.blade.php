@@ -9,7 +9,7 @@
                         <div class="input-group">
                             <input class="form-control" id="search" name="search"
                                    placeholder="{{__('Search-Name-Placeholder')}}" value="{{old('search', $search)}}"
-                                   type="text">
+                                   type="search">
                         </div>
                     </div>
                     <div class="col-2">
