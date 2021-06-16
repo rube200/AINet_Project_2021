@@ -13,7 +13,7 @@
         </div>
         <div class="row">
             <form action="{{route('estampa.index')}}" class="row" method="GET">
-                <div class="align-items-center row">
+                <div class="align-items-center row search">
                     <div class="col-8">
                         <div class="input-group">
                             <input class="form-control" id="search" name="search"
