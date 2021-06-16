@@ -40,7 +40,7 @@
             <input id="discount-amount" value="{{$discountAmount}}" type="hidden">
             @include('partials.display_estampas', $estampas)
         </div>
-        <div class="row">
+        <div class="row search-shop">
             {{$estampas->withQueryString()->links()}}
         </div>
     </div>
