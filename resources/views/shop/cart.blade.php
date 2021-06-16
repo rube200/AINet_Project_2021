@@ -3,7 +3,8 @@
 @section('content')
     <div class="container">
         @foreach($cart as $id => $data)
-            <form action="{{route('cart.remove', $id)}}" class="row shirt-row" id="remove-from-cart-form-{{$id}}" method="POST">
+            <form action="{{route('cart.remove', $id)}}" class="row shirt-row" id="remove-from-cart-form-{{$id}}"
+                  method="POST">
                 @csrf
                 <input name="estampaId" value="{{$data['estampaId']}}" type="hidden">
                 <input id="preco-{{$id}}" value="{{$data['preco']}}" type="hidden">
@@ -11,7 +12,7 @@
 
                 <div class="col-auto">
                     <br/>
-                    <img class="shirt-img" src="{{$data['tshirt-url']}}" >
+                    <img class="shirt-img" src="{{$data['tshirt-url']}}">
                     <img class="print-img" src="{{$data['print-url']}}">
                 </div>
 

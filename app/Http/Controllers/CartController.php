@@ -7,7 +7,6 @@ use App\Models\Estampa;
 use App\Models\Preco;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
-use function PHPUnit\Framework\isEmpty;
 
 class CartController extends Controller
 {
@@ -19,8 +18,7 @@ class CartController extends Controller
         $cart = session()->get('cart');
         if ($cart) {
             foreach ($cart as $id => $data) {
-                if (empty($data))
-                {
+                if (empty($data)) {
                     unset($cart[$id]);
                     continue;
                 }
