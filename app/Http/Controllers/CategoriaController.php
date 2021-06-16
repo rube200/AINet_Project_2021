@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoriaPost;
 use App\Models\Categoria;
 use App\Models\Estampa;
+use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 
 class CategoriaController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(Categoria::class);
+        $this->authorizeResource(Categoria::class, null, [
+            'except' => ['destroy', 'edit', 'update']
+        ]);
     }
 
     public function index()
@@ -41,26 +45,40 @@ class CategoriaController extends Controller
         return redirect()->route('categoria.index');
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function edit(int $id)
     {
         $categoria = Categoria::findOrFail($id);
+        $this->authorize('edit', $categoria);
+
         return view('categories.edit')->withCategoria($categoria);
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function update(CategoriaPost $request, int $id): RedirectResponse
     {
-        $colorData = $request->validated();
         $categoria = Categoria::findOrFail($id);
+        $this->authorize('edit', $categoria);
 
+        $colorData = $request->validated();
         $categoria->nome = $colorData['nome'];
         $categoria->save();
 
         return redirect()->route('categoria.index');
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function destroy(int $id): RedirectResponse
     {
         $categoria = Categoria::findOrFail($id);
+        $this->authorize('delete', $categoria);
+
         $categoria->delete();
         return redirect()->route('categoria.index');
     }
