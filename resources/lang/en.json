@@ -81,6 +81,13 @@
     "Discount-Amount-Text": "Amount for discount",
     "Shop-Print-Price": "Price: :price€ (per unit)",
     "Shop-Print-Price-Total": "Total: :price€",
+    "Cart-Display-Name": "Print: :name",
+    "Cart-Display-Amount": "Amount: :amount",
+    "Cart-Display-Size": "Size: :size",
+    "Cart-Display-Price": "Price: :price€ (per unit)",
+    "Cart-Display-Subtotal": "Subtotal: :price€",
+    "Cart-Display-Total": "Total: :price€",
+    "Cart-Empty": "Your cart is empty",
 
     "Cart-Title": "Cart",
     "Categories-Title": "Categories",

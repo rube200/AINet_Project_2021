@@ -8,6 +8,11 @@ use Illuminate\Http\RedirectResponse;
 
 class CorController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Cor::class);
+    }
+
     public function index()
     {
         $cores = Cor::get();

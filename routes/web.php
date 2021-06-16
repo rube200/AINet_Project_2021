@@ -35,8 +35,8 @@ Route::resources([
     'cor' => CorController::class,
 ], ['except' => ['show']]);
 
-Route::get('preco/edit', [PrecoController::class, 'edit'])->name('preco.edit');
-Route::put('preco', [PrecoController::class, 'update'])->name('preco.update');
+Route::get('preco/edit', [PrecoController::class, 'edit'])->name('preco.edit')->middleware('can:isAdmin,App\Models\User');
+Route::put('preco', [PrecoController::class, 'update'])->name('preco.update')->middleware('can:isAdmin,App\Models\User');
 
 Route::prefix('cart')->name('cart.')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('index');

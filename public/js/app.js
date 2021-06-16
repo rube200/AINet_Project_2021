@@ -50,11 +50,11 @@ function AddCartColorSelect(id)
 
 function AddCartAmountSelect(id)
 {
-    let amountElement = document.getElementById('add-cart-amount-' + id);
-    let discountAmountElement = document.getElementById('discount-amount');
+    let amount = parseInt(document.getElementById('add-cart-amount-' + id).value);
+    let discountAmount = parseInt(document.getElementById('discount-amount').value);
 
     let priceId;
-    if (amountElement.value >= discountAmountElement.value)
+    if (amount >= discountAmount)
     {
         priceId = 'preco-desconto-';
     }
@@ -64,7 +64,7 @@ function AddCartAmountSelect(id)
     }
 
     let basePrice = document.getElementById(priceId + id).value;
-    let price = amountElement.value * basePrice;
+    let price = amount * basePrice;
 
     let textElement = document.getElementById('add-cart-total-price-text-' + id);
     let showElement = document.getElementById('add-cart-total-price-' + id);

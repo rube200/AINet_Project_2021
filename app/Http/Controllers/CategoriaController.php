@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoriaPost;
 use App\Models\Categoria;
+use App\Models\Estampa;
 use Illuminate\Http\RedirectResponse;
 
 class CategoriaController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Categoria::class);
+    }
+
     public function index()
     {
         $categorias = Categoria::get();
