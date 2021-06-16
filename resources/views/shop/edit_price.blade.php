@@ -50,7 +50,8 @@
                 <strong>{{$message}}</strong>
                 @enderror
             </div>
-            <div class="col-auto">
+            <div class="col-auto"style="margin-top:15px">
+                <br>
                 <button class="btn btn-success" type="submit">
                     {{__('Save-Submit')}}
                 </button>
