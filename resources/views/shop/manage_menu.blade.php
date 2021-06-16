@@ -18,22 +18,22 @@
             <label>
                 {{__('Discount-Minimum-Amount', ['amount' => $preco->quantidade_desconto])}}
             </label>
-            <a class="btn btn-success" href="{{route('preco.edit')}}">{{__('Edit-Price-Button')}}</a>
+            <a class="btn btn-success" href="{{route('preco.edit')}}"style="margin-top:10px">{{__('Edit-Price-Button')}}</a>
         </div>
-        <br/>
+
         @can('viewAny', \App\Models\Estampa::class)
-            <div class="row">
-                <a class="btn btn-success" href="{{route('estampa.index')}}">{{__('Manage-Prints-Text')}}</a>
+            <div class="row-btn row">
+                <a class="btn btn-success print-btn" href="{{route('estampa.index')}}"style="margin-top:10px">{{__('Manage-Prints-Text')}} </a>
             </div>
         @endcan
             @can('viewAny', \App\Models\Categoria::class)
-                <div class="row">
-                    <a class="btn btn-success" href="{{route('categoria.index')}}">{{__('Manage-Categories-Text')}}</a>
+                <div class="row-btn row">
+                    <a class="btn btn-success categories-btn" href="{{route('categoria.index')}}"style="margin-top:10px">{{__('Manage-Categories-Text')}}</a>
                 </div>
             @endcan
             @can('viewAny', \App\Models\Cor::class)
-                <div class="row">
-                    <a class="btn btn-success" href="{{route('cor.index')}}">{{__('Manage-Colers-Text')}}</a>
+                <div class="row-btn row">
+                    <a class="btn btn-success colors-btn" href="{{route('cor.index')}}"style="margin-top:10px">{{__('Manage-Colers-Text')}}</a>
                 </div>
             @endcan
     </div>

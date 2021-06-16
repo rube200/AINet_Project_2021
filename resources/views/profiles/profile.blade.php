@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="card col-auto profile-card">
-                <img class="card-img-top profile-img-view" src="{{$user->img}}">
+                <img class="card-img-top profile-img-view profile-img" src="{{$user->img}}">
                 <div class="card-body">
                     <h5 class="card-title">{{$user->name}}</h5>
                     <p class="card-text">Joined at {{$user->created_at}}</p>

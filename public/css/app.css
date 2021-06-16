@@ -102,3 +102,12 @@ html {
 .cart-icon-div:hover {
     color: white;
 }
+
+.profile-img{
+    max-width: 25%;
+    margin-top: 20px;
+}
+
+.row-btn{
+    margin-top: 10px;
+}
