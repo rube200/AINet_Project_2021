@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EstampaPost;
 use App\Models\Categoria;
+use App\Models\Cor;
 use App\Models\Estampa;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -25,7 +26,8 @@ class EstampaController extends Controller
     public function show(Estampa $estampa)
     {
         EstampaController::prepareEstampaImage($estampa);
-        return view('prints.print')->withEstampa($estampa);
+        $cores = Cor::pluck('nome', 'codigo');
+        return view('prints.print')->withEstampa($estampa)->withCores($cores)->withShow(true);
     }
 
     public function create()
@@ -114,7 +116,8 @@ class EstampaController extends Controller
             EstampaController::prepareEstampaImage($estampa);
 
         $categorias = Categoria::pluck('nome', 'id');
-        return view($viewName)->withEstampas($estampas)->withCategorias($categorias)->withCategoriaEscolhida($categoria)->withSearch($searchName);
+        $cores = Cor::pluck('nome', 'codigo');
+        return view($viewName)->withEstampas($estampas)->withCategorias($categorias)->withCategoriaEscolhida($categoria)->withSearch($searchName)->withCores($cores)->withShow(false);
     }
 
     public static function prepareEstampaImage(Estampa $estampa)

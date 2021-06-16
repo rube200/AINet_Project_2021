@@ -11,6 +11,7 @@
                     <h5 class="card-title estampa-name">{{$estampa->nome}}</h5>
                     <p class="card-text estampa-description">{{$estampa->descricao}}</p>
                     @include('partials.add_to_cart', ['add_button_classes' => 'btn btn-secondary btn-lg', $estampa])
+                    <a class="btn btn-secondary" href="{{route('index')}}">{{__('Back-Submit')}}</a>
                 </div>
             </div>
         </div>

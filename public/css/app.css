@@ -88,3 +88,7 @@ html {
     height: 100px;
     width: 100px;
 }
+
+.add-cart-form {
+    background-color: white;
+}

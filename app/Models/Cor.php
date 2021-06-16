@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static get()
  * @method static create(array $colorData)
  * @method static find(string $codigo)
+ * @method static pluck(string $string, string $string1)
  * @property string nome
  */
 class Cor extends Model

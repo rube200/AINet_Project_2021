@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CartPost;
+use Illuminate\Http\RedirectResponse;
 
 class CartController extends Controller
 {
@@ -16,39 +17,23 @@ class CartController extends Controller
         return view('cart.index');
     }
 
-    public function add(Request $request)
+    public function add(CartPost $request): RedirectResponse
     {
-        //$id = $request->id;
-        if (false) {
-            abort(404);
-        }
+        $data = $request->validated();
 
+        dd('va');
+        $key = $data['estampaId'] . '_' . $data['color'] . '_' . $data['size'];
         $cart = session()->get('cart');
+
         if (!$cart) {
-            $cart = [
-                /*$id => [
-                    "quantity" => 1
-                ]*/
-            ];
-
-            session()->put('cart', $cart);
-            return redirect()->back();
+            $cart = [$key => $data];
         }
-
-        return redirect()->back();
-
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-
-            session()->put('cart', $cart);
-            return redirect()->back();
+        else if (isset($cart[$key])) {
+            $cart[$key]['amount'] += $data['amount'];
         }
-
-        $cart[$id] = [
-            /*$id => [
-                "quantity" => 1
-            ]*/
-        ];
+        else {
+            $cart[$key] = $data;
+        }
 
         session()->put('cart', $cart);
         return redirect()->back();
